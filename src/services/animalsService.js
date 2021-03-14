@@ -1,7 +1,9 @@
+import api from "./api.js";
+
 function getAll() {
-    return fetch("http://localhost:3000/animals")
-    .then()
-    .catch((error) => console.log(error));
+    return fetch(api.animals)
+    .then(res => res.json())
+    .catch(error => console.log(error));
 }
 
 export default {

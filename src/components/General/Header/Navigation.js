@@ -1,13 +1,15 @@
 import NavItem from "./NavItem";
 
-function Navigation() {
+function Navigation(props) {
     return (
       <nav>
           <ul>
-            <NavItem>test</NavItem>
-            <NavItem>test</NavItem>
-            <NavItem>test</NavItem>
-            <NavItem>test</NavItem>
+           {
+             this.props.menuItems.map(m => {
+               return <NavItem text={m.title} />
+             })
+           }
+           
           </ul>
       </nav>
     );

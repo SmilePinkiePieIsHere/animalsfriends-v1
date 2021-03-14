@@ -1,6 +1,6 @@
 function NavItem(props) {
     return (
-        <li className="listItem"><a href="#">{props.children}</a></li>
+        <li className="listItem"><a href="#">{props.text}</a></li>
     );
 }
 

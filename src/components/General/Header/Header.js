@@ -1,17 +1,19 @@
+import Navigation from "./Navigation";
 import style from "./Header.module.css";
 
-import { Component } from "react";
-import Navigation from "./Navigation";
+let mainMenu = [
+    { title: 'За нас', description: "Leviosa" },
+    { title: 'Животните', description: "Gero" },
+    { title: 'Каузи', description: "Aslan" }
+];
 
-class Header extends Component {
-    render() {
-        return(
+function Header() {
+    return(
         <header>
             <img src="" alt="Logo"/>
-            <Navigation/>
+            <Navigation menuItems={this.props.mainMenu}/>
         </header>
         );
-    };
 }
 
 export default Header;

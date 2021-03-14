@@ -1,12 +1,12 @@
 import NavItem from "./NavItem";
 
-function Navigation(props) {
+function Navigation(props) {    
     return (
       <nav>
-          <ul>
-           {
-             this.props.menuItems.map(m => {
-               return <NavItem text={m.title} />
+          <ul>           
+           {            
+           props.menuItems.map(m => {
+               return <NavItem text={m.title} />;
              })
            }
            
@@ -15,4 +15,4 @@ function Navigation(props) {
     );
 }
   
-  export default Navigation;
+export default Navigation;

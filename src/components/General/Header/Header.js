@@ -2,9 +2,9 @@ import Navigation from "./Navigation";
 import style from "./Header.module.css";
 
 let mainMenuItems = [
-    { title: 'За нас'},
-    { title: 'Животните'},
-    { title: 'Каузи'}
+    { title: 'За нас', link: '/for-us'},
+    { title: 'Животните', link: '/our-animals'},
+    { title: 'Каузи', link: '/causes'}
 ];
 
 function Header() {

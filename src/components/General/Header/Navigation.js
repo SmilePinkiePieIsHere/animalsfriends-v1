@@ -2,11 +2,11 @@ import NavItem from "./NavItem";
 
 function Navigation(props) {    
     return (
-      <nav>
+      <nav>            
           <ul>           
            {            
            props.menuItems.map(m => {
-               return <NavItem text={m.title} />;
+               return <NavItem link={m.link} text={m.title} />;
              })
            }
            

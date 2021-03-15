@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import * as animalsService from "./services/animalsService";
+//import * as animalsService from "./services/animalsService";
 
 import Animal from "./Animal";
 
@@ -13,21 +13,20 @@ class OurAnimals extends Component {
         }
     }
 
-    componentDidMount() {
-        animalsService.getAll()
-            .then(animals => {
-                this.setState({ animals });
-            });
-    }
+    // componentDidMount() {
+    //     animalsService.getAll()
+    //         .then(animals => {
+    //             this.setState({ animals });
+    //         });
+    // }
 
     render() {
         return (
             <div>
-                {
-                    this.state.animals.map(a => {
-                        return <Animal text={m.title} />;
-                    })
-                }
+                ANIMALS
+                {/* {this.state.animals.map(a => 
+                    <Animal text={m.title} />
+                )} */}
             </div>
         )
     };

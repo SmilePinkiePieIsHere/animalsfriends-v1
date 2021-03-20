@@ -2,15 +2,12 @@ import Navigation from "./Navigation";
 import style from "./Header.module.css";
 
 let mainMenuItems = [
-    { title: 'За нас', link: '/for-us'},
-    { title: 'Животните', link: '/our-animals'},
-    { title: 'Каузи', link: '/causes'}
+    { id: 1, title: 'За нас', link: '/for-us'},
+    { id: 2, title: 'Животните', link: '/animals'},
+    { id: 3, title: 'Каузи', link: '/posts'}
 ];
 
 function Header() {
-    console.log('Header');
-    console.log(mainMenuItems);
-
     return(
         <header>
             <img src="" alt="Logo"/>

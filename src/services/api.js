@@ -1,7 +1,7 @@
-const baseUrl = "http://localhost:5000";
+const baseUrl = "https://localhost:44358";
 
 export default {
     animals: `${baseUrl}/animals`,
     users: `${baseUrl}/users`,
-    causes: `${baseUrl}/causes`,
+    posts: `${baseUrl}/posts`,
 }

@@ -1,18 +1,16 @@
-import NavItem from "./NavItem";
+import { Link } from "react-router-dom";
 
-function Navigation(props) {    
-    return (
-      <nav>            
-          <ul>           
-           {            
-           props.menuItems.map(m => {
-               return <NavItem link={m.link} text={m.title} />;
-             })
-           }
-           
-          </ul>
-      </nav>
-    );
+function Navigation(props) {
+  return (<nav className="navbar">
+    <ul>
+      {
+        props.menuItems.map(m => {          
+          return <li  key={m.id} className="listItem"><Link to={m.link}>{m.title}</Link></li>;
+        })
+      }
+    </ul>
+  </nav>
+  );
 }
-  
+
 export default Navigation;

@@ -9,24 +9,27 @@ class Animals extends Component {
         this.state = {
             animals: []
         }
-    }    
-
-    componentDidMount() {
-        //console.log(this.props.match.params.category);
-       
-        animalsService //.default
-        .getAll()
-        .then(res => this.setState({ animals: res }));
-        console.log(this.state.animals)
     }
-   
+
+    componentDidMount() {       
+
+        animalsService 
+            .default
+            .getAll()
+            .then(res => {
+                console.log("" + res);
+                this.setState({ animals: res })
+            });
+        
+    }
+
     render() {
-        return(<span>
-            {/* <ul className="other-pets-list">
+        return (<span>
+            <ul className="other-pets-list">
                {this.state.animals.map(x => 
                     x.name
                 )}
-            </ul> */}
+            </ul>
         </span>);
     };
 }

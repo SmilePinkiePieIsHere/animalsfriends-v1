@@ -9,7 +9,7 @@ let mainMenuItems = [
 
 function Header() {
     return(
-        <header className={style.header}>
+        <header className="wrapper-header" >
             <img src="" alt="Logo"/>
             <Navigation menuItems={mainMenuItems} />
         </header>

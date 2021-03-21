@@ -1,24 +1,18 @@
 import { Link } from "react-router-dom";
 const Animal = ({
     id,
-    name,
-    description,
-    imageURL,
-    category,
-    likes
+    name, 
+    profileImg,
+    species
 }) => {
     return (
-        <li className="otherPet">
-            animals
-            {/* <h3>Name: {name}</h3>
-            <p>Category: {category}</p>
-            <p className="img"><img src={imageURL} /></p>
-            <p className="description">{description}</p>
-            <div className="pet-info">
-                <Link to="#"><button className="button"><i className="fas fa-heart"></i> Pet</button></Link>
-                <Link to={`/pets/details/${id}`}><button className="button">Details</button></Link>
-                <i className="fas fa-heart"></i> <span> {likes}</span>
-            </div> */}
+        <li className="animal">           
+            <h3>Име: {name}</h3>
+            <p>Вид: {species}</p>
+            <p className="img"><img src={profileImg} /></p>            
+            <div className="pet-info">                
+                <Link to={`/animals/details/${id}`}><button className="button">Детайли</button></Link>                
+            </div>
         </li>
     )
 }

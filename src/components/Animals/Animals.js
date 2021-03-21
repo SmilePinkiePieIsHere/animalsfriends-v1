@@ -16,20 +16,22 @@ class Animals extends Component {
     }
 
     componentDidMount() {
-        animalsService.default.getAll()
+        animalsService.default
+            .getAll()
             .then(res => {
                 this.setState({ animals: res })
             });
     }
 
-    componentDidUpdate(prevProps) {          
-        const status =  this.props.location.search; //this.props.match.params.status;
+    componentDidUpdate(prevProps) {
+        const status = this.props.location.search; //this.props.match.params.status;
 
         if (prevProps.location.search == status) { //prevProps.match.params.status == status
             return;
         }
 
-        animalsService.default.getAll(status)
+        animalsService.default
+            .getAll(status)
             .then(res => {
                 this.setState({ animals: res, currentStatus: status })
             })
@@ -41,8 +43,8 @@ class Animals extends Component {
 
                 <AnimalsFilters />
 
-                <ul className="other-pets-list">
-                    {this.state.animals.map(x =>
+                <ul className="wrapper-animals">
+                    {this.state.animals?.map(x =>
                         <Animal key={x.id} {...x} />
                     )}
                 </ul>

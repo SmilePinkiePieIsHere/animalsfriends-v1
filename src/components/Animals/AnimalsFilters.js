@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-const AnimalsFilters = () => {
+function AnimalsFilters () {
     return (
         <nav className="navbar">
             <ul>

@@ -1,19 +1,24 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import * as animalsService from "../../services/animalsService";
 
-const AnimalDetails = ({
-     match
-}) => {
+function AnimalDetails({
+    match
+}) {
     let [animal, setAnimal] = useState({});
 
-    useEffect(() => {      
+    useEffect(() => {
         animalsService.default.getOne(match.params.animalId)
-        .then(res => setAnimal(res));
-    },[]);
+            .then(res => setAnimal(res));
+    }, []);
 
-    return (<section className="detailsMyPet">
-        <h3>{animal.name}</h3>
-    </section>)
+    return (
+        <section className="animal-details">
+            <p className="profile-img"><img alt={animal.name} src={animal.img} /></p>      
+            <h3>{animal.name}</h3>     
+            <p>{animal.gender}/{animal.status}</p>            
+            <p>{animal.description}</p>
+        </section>
+    );
 }
 
 export default AnimalDetails;

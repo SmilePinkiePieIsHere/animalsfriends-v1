@@ -1,5 +1,11 @@
 import api from "./api.js";
 
+//function getAll(queryParams) {  
+//     return fetch(`${api.animals}${queryParams}`)
+//         .then(res => res.json())
+//         .catch(error => console.log(error));
+// }
+
 function getAll(status) {   
     let animalsURL = api.animals + ((status && status != 'all') ? `${status}` : '');
 
@@ -9,8 +15,7 @@ function getAll(status) {
 }
 
 function getOne(animalId) {
-    var url = `${api.animals}/${animalId}`;
-    return fetch(url)
+    return fetch(`${api.animals}/${animalId}`)
         .then(res => res.json())
         .catch(error => console.log(error));
 }

@@ -1,5 +1,5 @@
 import Navigation from "./Navigation";
-import style from "./Header.module.css";
+import style from "./Header.scss";
 
 let mainMenuItems = [
     { id: 1, title: 'За нас', link: '/for-us'},
@@ -9,7 +9,7 @@ let mainMenuItems = [
 
 function Header() {
     return(
-        <header>
+        <header className={style.header}>
             <img src="" alt="Logo"/>
             <Navigation menuItems={mainMenuItems} />
         </header>

@@ -7,7 +7,7 @@ import api from "./api.js";
 // }
 
 function getAll(status) {   
-    let animalsURL = api.animals + ((status && status != 'all') ? `${status}` : '');
+    let animalsURL = api.animals + ((status) ? `${status}` : '');
 
     return fetch(animalsURL)
         .then(res => res.json())

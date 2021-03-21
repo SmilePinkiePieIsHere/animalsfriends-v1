@@ -3,6 +3,7 @@ import { Component } from "react";
 import * as animalsService from "../../services/animalsService";
 
 import Animal from "../Animals/Animal";
+import AnimalsFilters from '../Animals/AnimalsFilters';
 
 class Animals extends Component {
     constructor(props) {
@@ -15,40 +16,37 @@ class Animals extends Component {
     }
 
     componentDidMount() {
-        animalsService
-            .default
-            .getAll()
+        animalsService.default.getAll()
             .then(res => {
                 this.setState({ animals: res })
             });
-        console.log(this.props.match.params);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log(this.props.match.params);
+    componentDidUpdate(prevProps) {          
+        const status =  this.props.location.search; //this.props.match.params.status;
 
-        // let currCategory = this.props.match.params.category;
+        if (prevProps.location.search == status) { //prevProps.match.params.status == status
+            return;
+        }
 
-        // if (prevProps.match.params.category == currentCategory) {
-        //     return;
-        // }
-
-        // petServices
-        // .getAll(currCategory)
-        // .then(
-        //     res => 
-        //     this.setState({ pets: res, currentCategory: currCategory}
-        // ));
+        animalsService.default.getAll(status)
+            .then(res => {
+                this.setState({ animals: res, currentStatus: status })
+            })
     }
 
     render() {
-        return (<span>
-            <ul className="other-pets-list">
-                {this.state.animals?.map(x =>
-                    <Animal key={x.id} {...x} />
-                )}
-            </ul>
-        </span>);
+        return (
+            <span>
+
+                <AnimalsFilters />
+
+                <ul className="other-pets-list">
+                    {this.state.animals.map(x =>
+                        <Animal key={x.id} {...x} />
+                    )}
+                </ul>
+            </span>);
     };
 }
 

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import * as animalServices from "../../services/animalServices";
+import { useEffect, useState} from "react";
+import * as animalsService from "../../services/animalsService";
 
 const AnimalDetails = ({
-    macth
+     match
 }) => {
-    let [animal, setAnimal] = useEffect({});
+    let [animal, setAnimal] = useState({});
 
-    useEffect(() => {
-        animalServices.getOne(macth.params.petId)
+    useEffect(() => {      
+        animalsService.default.getOne(match.params.animalId)
         .then(res => setAnimal(res));
-    },[match]);
+    },[]);
 
     return (<section className="detailsMyPet">
         <h3>{animal.name}</h3>

@@ -1,23 +1,17 @@
 import api from "./api.js";
 
+function getAll(status) {   
+    let animalsURL = api.animals + ((status && status != 'all') ? `${status}` : '');
 
-// export const getAll = (category = '') => {    
-//     let petURl = url + ((category && category != 'all') ? '?category=${category}' : '');
-
-//     return fetch(petURl)
-//         .then(res => res.json)        
-//         .catch(error => console.log(error));
-// }
-
-function getAll() {
-    return fetch(api.animals)
+    return fetch(animalsURL)
         .then(res => res.json())
         .catch(error => console.log(error));
 }
 
 function getOne(animalId) {
-    return fetch(`${api.animals}/${animalId}`)
-        .then(res => res.json)
+    var url = `${api.animals}/${animalId}`;
+    return fetch(url)
+        .then(res => res.json())
         .catch(error => console.log(error));
 }
 

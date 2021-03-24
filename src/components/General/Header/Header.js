@@ -1,3 +1,4 @@
+import { Navbar } from "react-bootstrap";
 import Navigation from "../Navigation";
 import style from "./Header.scss";
 
@@ -10,8 +11,10 @@ let mainMenuItems = [
 function Header() {
     return (
         <header className="wrapper-header" >
-            <img src="" alt="Logo" />
-            <Navigation menuItems={mainMenuItems} />
+            <Navbar>
+                <img src="" alt="Logo" />
+                <Navigation menuItems={mainMenuItems} />
+            </Navbar>
         </header>
     );
 }

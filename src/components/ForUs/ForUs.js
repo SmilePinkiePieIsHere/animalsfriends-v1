@@ -1,4 +1,5 @@
 import { Component } from "react";
+import ContactUs from "./ContactUs";
 import GoogleApiWrapper from "./GoogleApiWrapper";
 
 class ForUs extends Component {
@@ -9,6 +10,7 @@ class ForUs extends Component {
     render() {
         return (
             <span>
+                <ContactUs/>
                 <GoogleApiWrapper/>
             </span>);
     };

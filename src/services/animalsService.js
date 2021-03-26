@@ -1,11 +1,5 @@
 import api from "./api.js";
 
-//function getAll(queryParams) {  
-//     return fetch(`${api.animals}${queryParams}`)
-//         .then(res => res.json())
-//         .catch(error => console.log(error));
-// }
-
 function getAll(status) {   
     let animalsURL = api.animals + ((status) ? `${status}` : '');
 
@@ -20,7 +14,27 @@ function getOne(animalId) {
         .catch(error => console.log(error));
 }
 
+function addAnimal(name, description, gender, species) {
+    let animal = {
+        name: name,
+        description: description,
+        gender: gender,
+        species: species
+    }
+
+    return fetch(api.animals, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(animal)
+    })
+        .then(res => res.json())
+        .catch(error => console.log(error));
+}
+
 export default {
     getAll,
-    getOne
+    getOne,
+    addAnimal
 }

@@ -1,4 +1,5 @@
 import { Navbar } from "react-bootstrap";
+import {Link } from "react-router-dom";
 import Navigation from "../Navigation";
 import style from "./Header.scss";
 
@@ -13,6 +14,7 @@ function Header() {
         <header className="wrapper-header" >
             <Navbar>
                 <img src="" alt="Logo" />
+                <Link to="/animals/add">Add Animal</Link>
                 <Navigation menuItems={mainMenuItems} />
             </Navbar>
         </header>

@@ -7,7 +7,7 @@ function AnimalDetails({
     let [animal, setAnimal] = useState({});
 
     useEffect(() => {
-        animalsService.default.getOne(match.params.animalId)
+        animalsService.default.getAnimal(match.params.animalId)
             .then(res => setAnimal(res));
     }, []);
 

@@ -2,7 +2,7 @@ import { Component } from "react";
 
 import * as animalsService from "../../services/animalsService";
 
-import Animal from "../Animals/Animal";
+import AnimalCard from "./AnimalCard";
 import AnimalsFilters from '../Animals/AnimalsFilters';
 
 class Animals extends Component {
@@ -45,7 +45,7 @@ class Animals extends Component {
 
                 <ul className="wrapper-animals">
                     {this.state.animals?.map(x =>
-                        <Animal key={x.id} {...x} />
+                        <AnimalCard key={x.id} {...x} />
                     )}
                 </ul>
             </span>);

@@ -1,16 +1,21 @@
+import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Navigation(props) {
+function Navigation(props) {  
+    // function clickedNav(e) {           
+    //    e.preventDefault();
+    // }
+
     return (
-        <nav className="navbar">
-            <ul>
-                {
-                    props.menuItems.map(m => {
-                        return <li key={m.id} className="nav-item"><Link to={m.link}>{m.title}</Link></li>;
-                    })
-                }
-            </ul>
-        </nav>
+        <Nav className="mr-auto">
+            {
+                props.menuItems.map(m => {                    
+                    //return <Nav.Link key={m.id}><Link to={m.link}>{m.title}</Link></Nav.Link>;
+                    //<Nav.Link key={m.id} to={m.link} >{m.title}</Nav.Link>;
+                    return <Nav.Link key={m.id} ><Link to={m.link}>{m.title}</Link></Nav.Link>
+                })
+            }
+        </Nav>
     );
 }
 

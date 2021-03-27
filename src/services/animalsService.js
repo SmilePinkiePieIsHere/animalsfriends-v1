@@ -1,3 +1,4 @@
+import { Alert } from "react-bootstrap";
 import api from "./api.js";
 
 function getAll(status) {   
@@ -5,13 +6,20 @@ function getAll(status) {
 
     return fetch(animalsURL)
         .then(res => res.json())
-        .catch(error => console.log(error));
+        .catch(error => {
+            <Alert variant='danger'>Error while getting animals from the server!</Alert>
+            console.log(error)
+        });
 }
 
-function getOne(animalId) {
+function getAnimal(animalId) {
+    debugger;
     return fetch(`${api.animals}/${animalId}`)
         .then(res => res.json())
-        .catch(error => console.log(error));
+        .catch(error => {
+            <Alert variant='danger'>Error while recieving the animal from the server!</Alert>
+            console.log(error)
+        });
 }
 
 function addAnimal(name, description, gender, species) {
@@ -30,11 +38,14 @@ function addAnimal(name, description, gender, species) {
         body: JSON.stringify(animal)
     })
         .then(res => res.json())
-        .catch(error => console.log(error));
+        .catch(error => {
+            <Alert variant='danger'>Error while adding new animal to the server!</Alert>
+            console.log(error)
+        });
 }
 
 export default {
     getAll,
-    getOne,
+    getAnimal,
     addAnimal
 }

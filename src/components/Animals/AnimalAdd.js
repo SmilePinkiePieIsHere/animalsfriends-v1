@@ -1,6 +1,6 @@
 import * as animalsService from "../../services/animalsService";
 
-function AddAnimal() {
+function AnimalAdd() {
     const onCreateAnimalSubmitHandler = (e) =>  {
         e.preventDefault();
         console.log(e);
@@ -64,4 +64,4 @@ function AddAnimal() {
     );
 }
 
-export default AddAnimal;
+export default AnimalAdd;

@@ -1,18 +1,25 @@
+import * as animalsService from "../../services/animalsService";
 
-function AnimalFormView ({
-    onSubmitHandler,    
-    buttonTitle,
-    animalName, 
-    setAnimalName 
-}) {
+function AnimalAdd() {
+    const onCreateAnimalSubmitHandler = (e) =>  {
+        e.preventDefault();
+        console.log(e);
+
+        const {name, description,} = e.target;
+        //name, description, gender, species, currentState
+        animalsService.default.addAnimal(name.value);
+
+    }
+
     return (
         <section>
-            <form onSubmit={onSubmitHandler}>
-                <fieldset>                 
+            <form onSubmit={onCreateAnimalSubmitHandler}>
+                <fieldset>
+                    <legend>Add new Pet</legend>
                     <p className="field">
                         <label htmlFor="name">Name</label>
                         <span className="input">
-                            <input type="text" name="name" value={animalName} onChange={(e) => setAnimalName(e.target.value)} id="name" placeholder="Name" />
+                            <input type="text" name="name" id="name" placeholder="Name" />
                             <span className="actions"></span>
                         </span>
                     </p>
@@ -51,11 +58,11 @@ function AnimalFormView ({
                             <span className="actions"></span>
                         </span>
                     </p>
-                    <input className="button" type="submit" className="submit" value={buttonTitle} />
+                    <input className="button" type="submit" className="submit" value="Add Pet" />
                 </fieldset>
             </form>
         </section>
     );
-};
+}
 
-export default AnimalFormView;
+export default AnimalAdd;

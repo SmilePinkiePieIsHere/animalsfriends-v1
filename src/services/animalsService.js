@@ -1,7 +1,7 @@
 import { Alert } from "react-bootstrap";
 import api from "./api.js";
 
-function getAll(status) {   
+function getAll(status) {
     let animalsURL = api.animals + ((status) ? `${status}` : '');
 
     return fetch(animalsURL)
@@ -22,12 +22,14 @@ function getAnimal(animalId) {
         });
 }
 
-function addAnimal(name, description, gender, species) {
+function addAnimal(name, description, gender, species, currentState) {
     let animal = {
         name: name,
-        description: description,
         gender: gender,
-        species: species
+        currentState: currentState,
+        species: species,
+        description: description,
+        profileImg: ''
     }
 
     return fetch(api.animals, {

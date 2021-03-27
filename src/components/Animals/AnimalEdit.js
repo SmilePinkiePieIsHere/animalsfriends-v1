@@ -27,13 +27,12 @@ class AnimalEdit extends Component {
     }
 
     onEditSubmitHandler(e) {
-        console.log(e);
+        animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState);
     };
 
     render() {
         return <AnimalFormView
-            onSubmitHandler={this.onEditSubmitHandler.bind(this)}
-            formTitle="Редактирай:"
+            onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
             buttonTitle="Запази"
             animalName={this.state.name}
             setAnimalName={(name) => this.setState({name})}

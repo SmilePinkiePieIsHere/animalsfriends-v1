@@ -1,67 +1,43 @@
+import { Component } from 'react';
+
 import * as animalsService from "../../services/animalsService";
 
-function AnimalAdd() {
-    const onCreateAnimalSubmitHandler = (e) =>  {
-        e.preventDefault();
-        console.log(e);
+import AnimalFormView from "../Animals/AnimalFormView";
 
-        const {name, description,} = e.target;
-        animalsService.default.addAnimal(name.value);
+class AnimalAdd extends Component {
+    constructor(props) {
+        super(props);
 
-    }
+        this.state = {
+            name: '',
+            gender: '',            
+            currentState: '',
+            species: '',
+            description: '',
+            profileImg: ''
+        }
+    }   
 
-    return (
-        <section>
-            <form onSubmit={onCreateAnimalSubmitHandler}>
-                <fieldset>
-                    <legend>Add new Pet</legend>
-                    <p className="field">
-                        <label htmlFor="name">Name</label>
-                        <span className="input">
-                            <input type="text" name="name" id="name" placeholder="Name" />
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="description">Description</label>
-                        <span className="input">
-                            <textarea rows="4" cols="45" type="text" name="description" id="description"
-                                placeholder="Description"></textarea>
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="image">Image</label>
-                        <span className="input">
-                            <input type="text" name="imageURL" id="image" placeholder="Image" />
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="species">Gender</label>
-                        <span className="input">
-                            <select type="text" name="species">
-                                <option value="Cat" >Male</option>
-                                <option value="Dog" >Female</option>  
-                            </select>
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="species">Species</label>
-                        <span className="input">
-                            <select type="text" name="species">
-                                <option value="Cat" >Cat</option>
-                                <option value="Dog" >Dog</option>  
-                            </select>
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <input className="button" type="submit" className="submit" value="Add Pet" />
-                </fieldset>
-            </form>
-        </section>
-    );
-}
+    onEditSubmitHandler(e) {        
+        animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState);
+    };
+
+    render() {
+        return <AnimalFormView
+            onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
+            buttonTitle="Добави"
+            animalName={this.state.name}
+            setAnimalName={(name) => this.setState({name})}
+            animalGender={this.state.gender}
+            setGenderName={(gender) => this.setState({gender})}
+            animalState={this.state.currentState}
+            setAnimalState={(currentState) => this.setState({currentState})}
+            animalSpecies={this.state.species}
+            setAnimalSpecies={(species) => this.setState({species})}
+            animalDescription={this.state.description}
+            setAnimalDescription={(description) => this.setState({description})}
+        />
+    };
+};
 
 export default AnimalAdd;

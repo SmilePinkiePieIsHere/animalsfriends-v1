@@ -8,6 +8,7 @@ import AnimalEdit from "./components/Animals/AnimalEdit";
 import Footer from "./components/General/Footer";
 import ForUs from './components/ForUs';
 import Posts from './components/Posts/Posts';
+import Login from "./components/General/Login";
 
 import './App.scss';
 
@@ -16,6 +17,7 @@ function App() {
         <main className="wrapper-main">
             <Header />
             <Switch>
+                <Route path="/login" component={Login} />
                 <Route path="/for-us" component={ForUs} />
                 <Route path="/animals" exact component={Animals} />
                 <Route path="/animals?status=:status" component={Animals} />

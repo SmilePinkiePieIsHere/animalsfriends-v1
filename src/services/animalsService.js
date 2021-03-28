@@ -13,7 +13,21 @@ function getAll(status) {
 }
 
 function getAnimal(animalId) {
-    debugger;
+    // debugger;
+    // return fetch(api.users, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json',
+    //         'Authorization': 'Bearer ' + accessToken
+    //     },
+    //     body: JSON.stringify(user)
+    // })
+    // .then(res => res.json())
+    // .catch(error => {
+    //     <Alert variant='danger'>Error while authorization!</Alert>
+    //     console.log(error)
+    // });
     return fetch(`${api.animals}/${animalId}`)
         .then(res => res.json())
         .catch(error => {

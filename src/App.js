@@ -8,7 +8,7 @@ import AnimalEdit from "./components/Animals/AnimalEdit";
 import Footer from "./components/General/Footer";
 import ForUs from './components/ForUs';
 import Posts from './components/Posts/Posts';
-import Login from "./components/General/UserState";
+import Login from "./components/General/UserState/Login";
 
 import './App.scss';
 

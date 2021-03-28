@@ -16,6 +16,7 @@ class Login extends Component {
 
     onSubmitHandler(e) {       
         e.preventDefault();  
+        
         const { cookies, history } = this.props;
         var user = e.target.username.value;
         var pass = e.target.pass.value;
@@ -25,9 +26,7 @@ class Login extends Component {
         }
         
         usersService.default.loginUser(user, pass, function(data) {             
-            if(!data.error_description){
-                debugger;
-               
+            if(!data.error_description){    
                const expires_in = new Date(new Date().getTime() + (data.expires_in * 1000));
                cookies.set('access_token', data.access_token, { expires: expires_in });
                cookies.set('refresh_token', data.refresh_token);

@@ -1,4 +1,4 @@
-import { Navbar, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 
 import Navigation from "../Navigation";
 import UserSettings from "../UserState/UserSettings";
@@ -14,13 +14,7 @@ let mainMenuItems = [
 function Header() {
     return (
         <header className="wrapper-header" >
-            <Navbar bg="light" expand="lg">
-                {/* <Navbar.Brand href="#home"><img src="" alt="Logo" /></Navbar.Brand>                 */}
-                
-                {/* <Form inline>
-                    <FormControl type="text" placeholder="Търсене" className="mr-sm-2" />
-                    <Button variant="outline-primary">Търсене</Button>
-                </Form> */}
+            <Navbar bg="light" expand="lg">               
                 <UserSettings/>         
                 <Navigation menuItems={mainMenuItems} />     
             </Navbar>

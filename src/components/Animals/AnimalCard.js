@@ -1,12 +1,15 @@
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 function AnimalCard({
     id,
     name,
     profileImg,
     gender
-}) {
+}) {  
+    const [cookies] = useCookies(['username']);
+    let isNotLoggedIn = typeof (cookies.username) == "undefined" || cookies.username == "undefined";
+
     return (
         <Card style={{ width: '21rem' }} className="wrap-animal">
             <Card.Body>
@@ -14,7 +17,7 @@ function AnimalCard({
                 <Card.Title>{name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{gender}</Card.Subtitle>
                 <div className="details">
-                    <Card.Link href={`/animals/${id}/edit`}>Редактирай</Card.Link>
+                    {!isNotLoggedIn && <Card.Link href={`/animals/${id}/edit`}>Редактирай</Card.Link>}                    
                     <Card.Link href={`/animals/details/${id}`}>Детайли</Card.Link>
                     {/* <Link to={`/animals/details/${id}`}><button className="button">Детайли</button></Link> */}
                 </div>

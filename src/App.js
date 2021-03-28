@@ -18,13 +18,15 @@ function App() {
             <Header />         
             <Switch>
                 <Route path="/login" component={Login} />
+
                 <Route path="/for-us" component={ForUs} />
+                
                 <Route path="/animals" exact component={Animals} />
                 <Route path="/animals?status=:status" component={Animals} />
                 <Route path="/animals/details/:animalId" component={AnimalDetails} />                
                 <Route path="/animals/:animalId/edit" component={AnimalEdit} />
                 <Route path="/animals/add" component={AnimalAdd} />
-                <Route path="/posts" component={Posts} />
+                {/* <Route path="/posts" component={Posts} /> */}
             </Switch>
             <Footer />
         </main>

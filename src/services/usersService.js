@@ -31,8 +31,8 @@ async function loginUser(name, pass, onSuccess) {
     .then((data) => {       
         onSuccess(data);
     })
-    .catch(error => {
-        debugger;
+    .catch(error => {        
+        alert('Error while authorization!');
         <Alert variant='danger'>Error while authorization!</Alert>
         console.log(error)
     });

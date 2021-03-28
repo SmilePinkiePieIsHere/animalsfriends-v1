@@ -12,22 +12,7 @@ function getAll(status) {
         });
 }
 
-function getAnimal(animalId) {
-    // debugger;
-    // return fetch(api.users, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         'Authorization': 'Bearer ' + accessToken
-    //     },
-    //     body: JSON.stringify(user)
-    // })
-    // .then(res => res.json())
-    // .catch(error => {
-    //     <Alert variant='danger'>Error while authorization!</Alert>
-    //     console.log(error)
-    // });
+function getAnimal(animalId) {  
     return fetch(`${api.animals}/${animalId}`)
         .then(res => res.json())
         .catch(error => {
@@ -46,10 +31,13 @@ function addAnimal(name, description, gender, species, currentState) {
         profileImg: ''
     }
 
+    var accessToken = "";
     return fetch(api.animals, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + accessToken
         },
         body: JSON.stringify(animal)
     })

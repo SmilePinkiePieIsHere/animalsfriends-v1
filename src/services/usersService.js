@@ -36,30 +36,6 @@ async function loginUser(name, pass, onSuccess) {
         <Alert variant='danger'>Error while authorization!</Alert>
         console.log(error)
     });
-    
-    // var url = api.users + '/login';
-    // await fetch(url, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'            
-    //     },
-    //     body: test2
-    // })
-    // // .then(res => res.json())    
-    // // .then((data) => {        
-    // //     onSuccess(data);
-    // // })
-    // .then(res => res.text())
-    // .then(data => JSON.parse(data))
-    // .then((data) => {
-    //     debugger;
-    //     onSuccess(data);
-    // })
-    // .catch(error => {
-    //     debugger;
-    //     <Alert variant='danger'>Error while authorization!</Alert>
-    //     console.log(error)
-    // });
 }
 
 export default {

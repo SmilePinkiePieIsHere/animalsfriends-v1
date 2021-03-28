@@ -8,14 +8,14 @@ import AnimalEdit from "./components/Animals/AnimalEdit";
 import Footer from "./components/General/Footer";
 import ForUs from './components/ForUs';
 import Posts from './components/Posts/Posts';
-import Login from "./components/General/Login";
+import Login from "./components/General/UserState";
 
 import './App.scss';
 
 function App() {
     return (
         <main className="wrapper-main">
-            <Header />
+            <Header />         
             <Switch>
                 <Route path="/login" component={Login} />
                 <Route path="/for-us" component={ForUs} />

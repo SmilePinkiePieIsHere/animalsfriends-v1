@@ -1,12 +1,13 @@
 import { Component } from "react";
 import { Alert } from "react-bootstrap";
+import { withCookies } from "react-cookie";
 
 import * as usersService from "../../../services/usersService";
 
-class Login extends Component {
+class Login extends Component {  
     constructor(props) {
         super(props);
-
+        
         this.state = {
             username: '',
             password: ''   
@@ -15,30 +16,29 @@ class Login extends Component {
 
     onSubmitHandler(e) {       
         e.preventDefault();  
+        const { cookies, history } = this.props;
         var user = e.target.username.value;
         var pass = e.target.pass.value;
 
         if (user.length < 3 && pass.length < 3) {
             <Alert variant='danger'>Името и паролата трябва да са над 3 символа дълги!</Alert>
         }
-
-        usersService.default.loginUser(user, pass, function(data) {
-            debugger;
-            var test = data;
-        });
-
-        // debugger;
-        //  if(!tokens.error_description){
-        //     const expires_in = new Date(new Date().getTime() + (tokens.expires_in * 1000));
-        //     Cookies.set('access_token', tokens.access_token, { expires: expires_in });
-        //     Cookies.set('refresh_token', tokens.refresh_token);
-        //     Cookies.set('username', user.username);
-            
-        //     window.location.href = '/main';
-        // }
-        // else {
-        //     alert(tokens.error_description);
-        // }
+        
+        usersService.default.loginUser(user, pass, function(data) {             
+            if(!data.error_description){
+                debugger;
+               
+               const expires_in = new Date(new Date().getTime() + (data.expires_in * 1000));
+               cookies.set('access_token', data.access_token, { expires: expires_in });
+               cookies.set('refresh_token', data.refresh_token);
+               cookies.set('username', user);
+               
+               history.push("/for-us");
+           }
+           else {
+               alert(data.error_description);
+           }
+        });            
     };
 
     render() {
@@ -54,7 +54,7 @@ class Login extends Component {
                 <p className="field">
                     <label htmlFor="name">Парола</label>
                     <span className="input">
-                        <input type="text" name="name" id="pass" placeholder="Парола" />
+                        <input type="text" name="password" id="pass" placeholder="Парола" />
                         <span className="actions"></span>
                     </span>
                 </p>
@@ -64,4 +64,4 @@ class Login extends Component {
     };
 }
 
-export default Login;
+export default withCookies(Login);

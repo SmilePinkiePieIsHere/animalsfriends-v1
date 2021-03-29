@@ -4,8 +4,6 @@ import { withCookies } from "react-cookie";
 
 import * as usersService from "../../../services/usersService";
 
-import style from "./Login.scss";
-
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -55,7 +53,7 @@ class Login extends Component {
                 <Row>
                     <Col></Col>
                     <Col xs={6}>
-                        <Form className="login-form" onSubmit={this.onSubmitHandler.bind(this)}>
+                        <Form className="form-view" onSubmit={this.onSubmitHandler.bind(this)}>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Потребителско име:</Form.Label>
                                 <Form.Control type="text" name="username" placeholder="Име" />

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { withCookies } from 'react-cookie';
 
 import * as animalsService from "../../services/animalsService";
 
@@ -8,18 +9,21 @@ class AnimalAdd extends Component {
     constructor(props) {
         super(props);
 
+        const { cookies } = props;
         this.state = {
             name: '',
             gender: '',            
             currentState: '',
             species: '',
             description: '',
-            profileImg: ''
+            profileImg: '',
+            accessToken: cookies.get('access_token')
         }
     }   
 
-    onEditSubmitHandler(e) {        
-        animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState);
+    onEditSubmitHandler(e) {   
+        debugger;     
+        animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState, this.state.accessToken);
     };
 
     render() {
@@ -29,7 +33,7 @@ class AnimalAdd extends Component {
             animalName={this.state.name}
             setAnimalName={(name) => this.setState({name})}
             animalGender={this.state.gender}
-            setGenderName={(gender) => this.setState({gender})}
+            setAnimalGender={(gender) => this.setState({gender})}
             animalState={this.state.currentState}
             setAnimalState={(currentState) => this.setState({currentState})}
             animalSpecies={this.state.species}
@@ -40,4 +44,4 @@ class AnimalAdd extends Component {
     };
 };
 
-export default AnimalAdd;
+export default withCookies(AnimalAdd);

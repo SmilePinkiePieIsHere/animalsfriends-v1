@@ -1,4 +1,4 @@
-import * as animalsService from "../../services/animalsService";
+import * as animalsService from "../../../services/animalsService";
 
 function AnimalAdd() {
     const onCreateAnimalSubmitHandler = (e) =>  {

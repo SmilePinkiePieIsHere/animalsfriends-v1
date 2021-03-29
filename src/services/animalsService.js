@@ -1,5 +1,6 @@
 import { Alert } from "react-bootstrap";
 import api from "./api.js";
+import auth from "./auth.js";
 
 function getAll(status) {
     let animalsURL = api.animals + ((status) ? `${status}` : '');
@@ -21,7 +22,8 @@ function getAnimal(animalId) {
         });
 }
 
-function addAnimal(name, description, gender, species, currentState) {
+function addAnimal(name, description, gender, species, currentState, accessToken) {
+    debugger;
     let animal = {
         name: name,
         gender: gender,
@@ -31,7 +33,12 @@ function addAnimal(name, description, gender, species, currentState) {
         profileImg: ''
     }
 
-    var accessToken = "";
+    var accessToken = accessToken; //auth.getAccessToken();
+    // if(!accessToken){
+    //     await authenticate();
+    //     accessToken = getAccessToken();
+    // }
+
     return fetch(api.animals, {
         method: 'POST',
         headers: {

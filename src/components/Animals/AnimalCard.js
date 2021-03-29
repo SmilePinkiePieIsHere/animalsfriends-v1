@@ -1,6 +1,8 @@
 import { Card, Col } from "react-bootstrap";
 import { useCookies } from 'react-cookie';
 
+//import { enum } from '../General/Helpers/enum.js';
+
 import style from "./AnimalCard.scss";
 
 function AnimalCard({

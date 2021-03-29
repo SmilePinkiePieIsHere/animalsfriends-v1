@@ -23,7 +23,7 @@ class Login extends Component {
         const { cookies, history, match } = this.props;
 
         var user = e.target.username.value;
-        var pass = e.target.pass.value;
+        var pass = e.target.password.value;
 
         if (user.length < 3 && pass.length < 3) {
             <Alert variant='danger'>Името и паролата трябва да са над 3 символа дълги!</Alert>
@@ -58,7 +58,7 @@ class Login extends Component {
                         <Form className="login-form" onSubmit={this.onSubmitHandler.bind(this)}>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Потребителско име:</Form.Label>
-                                <Form.Control type="email" name="username" placeholder="Име" />
+                                <Form.Control type="text" name="username" placeholder="Име" />
                             </Form.Group>
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Парола:</Form.Label>

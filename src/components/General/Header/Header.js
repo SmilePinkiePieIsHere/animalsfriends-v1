@@ -1,4 +1,5 @@
 import { Navbar } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 import Navigation from "../Navigation";
 import UserSettings from "../UserState/UserSettings";
@@ -11,11 +12,12 @@ let mainMenuItems = [
     // { id: 3, title: 'Блог', link: '/posts' }
 ];
 
-function Header() {
+function Header() {    
+    console.log(useLocation().pathname);
     return (
         <header className="wrapper-header" >
             <Navbar bg="light" expand="lg">               
-                <UserSettings/>         
+                <UserSettings test={useLocation().pathname} />         
                 <Navigation menuItems={mainMenuItems} />     
             </Navbar>
         </header>

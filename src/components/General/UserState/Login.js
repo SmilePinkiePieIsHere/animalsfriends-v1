@@ -10,22 +10,21 @@ class Login extends Component {
 
         this.state = {
             username: '',
-            password: '',
-            isLogedIn: false
+            password: ''
         }
     }
 
     onSubmitHandler(e) {
         e.preventDefault();
 
-        const { cookies, history, match } = this.props;
+        const { cookies, history, match, location } = this.props;
 
         var user = e.target.username.value;
         var pass = e.target.password.value;
 
         if (user.length < 3 && pass.length < 3) {
             <Alert variant='danger'>Името и паролата трябва да са над 3 символа дълги!</Alert>
-        }
+        }        
 
         usersService.default.loginUser(user, pass, function (data) {
 
@@ -34,16 +33,12 @@ class Login extends Component {
                 cookies.set('access_token', data.access_token, { expires: expires_in });
                 cookies.set('refresh_token', data.refresh_token);
                 cookies.set('username', user);
-
-                history.push(match.url);
+                
+                history.goBack();
             }
             else {
                 alert(data.error_description);
             }
-        });
-
-        this.setState({
-            isLogedIn: true
         });
     };
 

@@ -1,8 +1,8 @@
-const gender  = {
+export const genderAnimal  = {
 	male: "мъж",
 	female: "жена"
 };
 
-export default {
-    gender
-}
+// export default {
+//     genderAnimal
+// }

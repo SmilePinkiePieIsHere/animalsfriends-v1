@@ -5,8 +5,8 @@ import { withCookies } from 'react-cookie';
 
 class UserSettings extends Component {          
     constructor(props) {
-        super(props);        
-        
+        super(props); 
+
         let user = this.props.allCookies.username;
         this.state = {
             isNotLogedIn: typeof (user) == "undefined" || user == "undefined",
@@ -14,17 +14,26 @@ class UserSettings extends Component {
         }
     }
 
+    componentDidUpdate() {
+        let user = this.props.allCookies.username;
+        this.state = {
+            isNotLogedIn: typeof (user) == "undefined" || user == "undefined",
+            username: user
+        }
+
+       debugger;
+    }
+
     logOut(e) {  
-        e.preventDefault();      
-        const { cookies, history, match } = this.props;
+        e.preventDefault();   
+        
+        const { cookies } = this.props;
 
         cookies.remove('access_token');
         cookies.remove('refresh_token');
         cookies.remove('username');
         
-        this.setState({isNotLogedIn: true});  
-        
-        //history.push("/for-us");   
+        this.setState({isNotLogedIn: true});       
     }
 
     render() {

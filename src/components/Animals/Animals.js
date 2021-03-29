@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Container, Row } from "react-bootstrap";
 
 import * as animalsService from "../../services/animalsService";
 
@@ -39,16 +40,14 @@ class Animals extends Component {
 
     render() {
         return (
-            <span>
-
-                <AnimalsFilters />
-
-                <ul className="wrapper-animals">
+            <Container>
+                <Row><AnimalsFilters /></Row>
+                <Row>
                     {this.state.animals?.map(x =>
                         <AnimalCard key={x.id} {...x} />
                     )}
-                </ul>
-            </span>);
+                </Row>
+            </Container>);
     };
 }
 

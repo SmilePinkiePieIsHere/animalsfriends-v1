@@ -1,3 +1,7 @@
+import getAccessToken from "./auth.js";
+
+const accessToken = getAccessToken();
+
 export async function postData(url = '', data = {}, onSuccess) {
     await fetch(url, {
         method: 'POST',
@@ -22,7 +26,7 @@ export async function postData(url = '', data = {}, onSuccess) {
     });
 }
 
-export async function postAuthData(url = '', data = {}, accessToken, onSuccess) {  
+export async function postAuthData(url = '', data = {}, onSuccess) {  
     await fetch(url, {
         method: 'POST',        
         headers: {
@@ -31,6 +35,25 @@ export async function postAuthData(url = '', data = {}, accessToken, onSuccess) 
             'Authorization': 'Bearer ' + accessToken       
         },            
         body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then((data) => {       
+        onSuccess(data);
+    })
+    .catch(error => {    
+        console.log(error)
+    });
+}
+
+export async function deleteAuthData(url = '', onSuccess) {  
+    debugger;
+    await fetch(url, {
+        method: 'DELETE',        
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + accessToken       
+        }
     })
     .then(res => res.json())
     .then((data) => {       

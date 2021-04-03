@@ -1,8 +1,7 @@
 import { Alert } from "react-bootstrap";
 
 import endpoints from "./endpoints.js";
-import { postAuthData } from "./services.js";
-import getAccessToken from "./auth.js";
+import { postAuthData, deleteAuthData } from "./services.js";
 
 function getAll(status) {
     let animalsURL = endpoints.animals + ((status) ? `${status}` : '');
@@ -32,38 +31,33 @@ function addAnimal(name, description, gender, species, currentState) {
         species: species,
         description: description,
         profileImg: ''
-    }    
-   
-    const accessToken = getAccessToken();
+    }       
 
-    postAuthData(endpoints.animals, animal, accessToken, function (data){
-        debugger;
+    postAuthData(endpoints.animals, animal, function (data){        
         if(!data){
             return <Alert variant='danger'>Error while adding new animal to the server!</Alert>;
         }
         else {
             return data;
         }
-    })
-    
-    // return fetch(endpoints.animals, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         'Authorization': 'Bearer ' + accessToken
-    //     },
-    //     body: JSON.stringify(animal)
-    // })
-    //     .then(res => res.json())
-    //     .catch(error => {
-    //         <Alert variant='danger'>Error while adding new animal to the server!</Alert>
-    //         console.log(error)
-    //     });
+    })  
+}
+
+function removeAnimal(animalId) {  
+    debugger;
+    deleteAuthData(`${endpoints.animals}/${animalId}`, function (data){        
+        if(!data){
+            return <Alert variant='danger'>Error while deleting the animal!</Alert>;
+        }
+        else {
+            return data;
+        }
+    })  
 }
 
 export default {
     getAll,
     getAnimal,
-    addAnimal
+    addAnimal,
+    removeAnimal
 }

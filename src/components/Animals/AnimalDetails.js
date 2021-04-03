@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState, Fragment } from "react";
 import { useCookies } from 'react-cookie';
 
-import AlertNotification from "../General/AlertNotification";
+import ModalNotification from "../General/ModalNotification";
 
 import * as animalsService from "../../services/animalsService";
 import { genderAnimal, statusAnimal } from '../General/Helpers/enum.js';
@@ -25,7 +25,11 @@ function AnimalDetails({
 
     const popUpDelete = (e) => {  
         setPopUp(true);
-    }  
+    } 
+    
+    const hidePopUp = (e) => {  
+        setPopUp(false);
+    } 
     
     const deleteAnimal = (e) => {  
         animalsService.default.removeAnimal(animal.id);
@@ -50,7 +54,7 @@ function AnimalDetails({
                     </Card.Body>
                 </Card>
             </Col>  
-            <AlertNotification text="Сигурен ли сте, че искате да премахнете това животно?" variant="warning" show={popUp} onSuccess={deleteAnimal} />
+            <ModalNotification text="Сигурен ли сте, че искате да премахнете това животно?" variant="warning" show={popUp} onSuccess={deleteAnimal} onCancel={hidePopUp} />
         </Fragment>       
     );
 }

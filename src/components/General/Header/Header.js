@@ -8,8 +8,7 @@ import style from "./Header.scss";
 
 let mainMenuItems = [
     { id: 1, title: 'За нас', link: '/for-us' },
-    { id: 2, title: 'Животните', link: '/animals' },
-    // { id: 3, title: 'Блог', link: '/posts' }
+    { id: 2, title: 'Животните', link: '/animals' }    
 ];
 
 function Header() {    
@@ -17,7 +16,7 @@ function Header() {
     return (
         <header className="wrapper-header" >
             <Navbar bg="light" expand="lg">               
-                <UserSettings test={useLocation().pathname} />         
+                <UserSettings currentPage={useLocation().pathname}/> 
                 <Navigation menuItems={mainMenuItems} />     
             </Navbar>
         </header>

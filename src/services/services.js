@@ -1,7 +1,5 @@
 
-async function postData(url = '', data = {}, onSuccess) {   
-    debugger;
-
+async function postData(url = '', data = {}, onSuccess) {
     await fetch(url, {
         method: 'POST',
         mode: 'cors', // no-cors, *cors, same-origin

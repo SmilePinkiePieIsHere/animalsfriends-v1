@@ -7,7 +7,6 @@ import AnimalAdd from "./components/Animals/AnimalAdd";
 import AnimalEdit from "./components/Animals/AnimalEdit";
 import Footer from "./components/General/Footer";
 import ForUs from './components/ForUs';
-import Posts from './components/Posts/Posts';
 import Login from "./components/General/UserState/Login";
 
 import './App.scss';
@@ -18,15 +17,12 @@ function App() {
             <Header />         
             <Switch>
                 <Route path="/login" component={Login} />
-
-                <Route path="/for-us" component={ForUs} />
-                
+                <Route path="/for-us" component={ForUs} />                
                 <Route path="/animals" exact component={Animals} />
                 <Route path="/animals?status=:status" component={Animals} />
                 <Route path="/animals/details/:animalId" component={AnimalDetails} />                
                 <Route path="/animals/:animalId/edit" component={AnimalEdit} />
-                <Route path="/animals/add" component={AnimalAdd} />
-                {/* <Route path="/posts" component={Posts} /> */}
+                <Route path="/animals/add" component={AnimalAdd} />               
             </Switch>
             <Footer /> 
         </main>

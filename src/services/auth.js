@@ -1,7 +1,7 @@
 import Cookies from 'universal-cookie';
 
 import endpoints from "./endpoints.js";
-import services from "./services.js";
+import postData from "./services.js";
 
 function getAccessToken() {  
     const cookies = new Cookies();
@@ -10,7 +10,7 @@ function getAccessToken() {
 
     if(!accessToken && refreshToken){
 
-        services.postData(endpoints.userRefresh, refreshToken, function (data){
+       postData(endpoints.userRefresh, refreshToken, function (data){
             if(data){
                 const expires_in = new Date(new Date().getTime() + (data.expires_in * 1000));        
                 cookies.set('access_token', data.access_token, { expires: expires_in });

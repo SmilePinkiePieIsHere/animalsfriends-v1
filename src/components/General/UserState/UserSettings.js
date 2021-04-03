@@ -7,7 +7,8 @@ class UserSettings extends Component {
     constructor(props) {
         super(props); 
 
-        let user = this.props.allCookies.username;
+        //let user = this.props.allCookies.username;
+        let user = "dani";
         this.state = {
             isNotLogedIn: typeof (user) == "undefined" || user == "undefined",
             username: user
@@ -15,13 +16,12 @@ class UserSettings extends Component {
     }
 
     componentDidUpdate() {
-        let user = this.props.allCookies.username;
+        //let user = this.props.allCookies.username;
+        let user = "dani";
         this.state = {
             isNotLogedIn: typeof (user) == "undefined" || user == "undefined",
             username: user
         }
-
-       debugger;
     }
 
     logOut(e) {  

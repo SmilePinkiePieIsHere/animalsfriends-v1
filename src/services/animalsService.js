@@ -1,9 +1,11 @@
 import { Alert } from "react-bootstrap";
-import api from "./api.js";
-import auth from "./auth.js";
+import endpoints from "./endpoints.js";
+import getAccessToken from "./auth.js";
+
+const accessToken = getAccessToken();
 
 function getAll(status) {
-    let animalsURL = api.animals + ((status) ? `${status}` : '');
+    let animalsURL = endpoints.animals + ((status) ? `${status}` : '');
 
     return fetch(animalsURL)
         .then(res => res.json())
@@ -14,7 +16,7 @@ function getAll(status) {
 }
 
 function getAnimal(animalId) {  
-    return fetch(`${api.animals}/${animalId}`)
+    return fetch(`${endpoints.animals}/${animalId}`)
         .then(res => res.json())
         .catch(error => {
             <Alert variant='danger'>Error while recieving the animal from the server!</Alert>
@@ -22,8 +24,7 @@ function getAnimal(animalId) {
         });
 }
 
-function addAnimal(name, description, gender, species, currentState, accessToken) {
-    debugger;
+function addAnimal(name, description, gender, species, currentState) {
     let animal = {
         name: name,
         gender: gender,
@@ -32,14 +33,8 @@ function addAnimal(name, description, gender, species, currentState, accessToken
         description: description,
         profileImg: ''
     }
-
-    var accessToken = accessToken; //auth.getAccessToken();
-    // if(!accessToken){
-    //     await authenticate();
-    //     accessToken = getAccessToken();
-    // }
-
-    return fetch(api.animals, {
+    
+    return fetch(endpoints.animals, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

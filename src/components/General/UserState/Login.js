@@ -2,7 +2,8 @@ import { Component } from "react";
 import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
 import { withCookies } from "react-cookie";
 
-import * as usersService from "../../../services/usersService";
+import endpoints from "../../../services/endpoints.js";
+import postData from "../../../services/services";
 
 class Login extends Component {
     constructor(props) {
@@ -18,28 +19,34 @@ class Login extends Component {
         e.preventDefault();
 
         const { cookies, history, match, location } = this.props;
-
         var user = e.target.username.value;
         var pass = e.target.password.value;
 
         if (user.length < 3 && pass.length < 3) {
             <Alert variant='danger'>Името и паролата трябва да са над 3 символа дълги!</Alert>
-        }        
+        }  
 
-        usersService.default.loginUser(user, pass, function (data) {
+        let userTest = {
+            username: user,
+            password: pass
+        }  
 
+         debugger
+        
+        postData(endpoints.userLogin, userTest, function (data){
+            debugger;
             if (!data.error_description) {
                 const expires_in = new Date(new Date().getTime() + (data.expires_in * 1000));
                 cookies.set('access_token', data.access_token, { expires: expires_in });
                 cookies.set('refresh_token', data.refresh_token);
-                cookies.set('username', user);
+                cookies.set('username', ''); //user.username
                 
                 history.goBack();
             }
             else {
                 alert(data.error_description);
             }
-        });
+        })
     };
 
     render() {
@@ -63,24 +70,6 @@ class Login extends Component {
                     <Col></Col>
                 </Row>
             </Container>
-
-            // <form onSubmit={this.onSubmitHandler.bind(this)}>
-            //     <p className="field">
-            //         <label htmlFor="name">Име</label>
-            //         <span className="input">
-            //             <input type="text" name="username" id="name" placeholder="Име" />
-            //             <span className="actions"></span>
-            //         </span>
-            //     </p>
-            //     <p className="field">
-            //         <label htmlFor="name">Парола</label>
-            //         <span className="input">
-            //             <input type="text" name="password" id="pass" placeholder="Парола" />
-            //             <span className="actions"></span>
-            //         </span>
-            //     </p>
-            //     <input className="button" type="submit" className="submit" value="Влез" />
-            // </form>
         );
     };
 }

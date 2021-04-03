@@ -16,14 +16,12 @@ class AnimalAdd extends Component {
             currentState: '',
             species: '',
             description: '',
-            profileImg: '',
-            accessToken: cookies.get('access_token')
+            profileImg: ''
         }
     }   
 
     onEditSubmitHandler(e) {   
-        debugger;     
-        animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState, this.state.accessToken);
+        animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState);
     };
 
     render() {

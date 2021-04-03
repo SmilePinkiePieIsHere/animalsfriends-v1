@@ -28,7 +28,7 @@ function App() {
                 <Route path="/animals/add" component={AnimalAdd} />
                 {/* <Route path="/posts" component={Posts} /> */}
             </Switch>
-            <Footer />
+            <Footer /> 
         </main>
     );
 }

@@ -1,4 +1,4 @@
-.wrap-animal {    
+.animal-card {    
    max-width: 350px;
    margin:  0 auto 30px;
 
@@ -7,4 +7,10 @@
         max-width: 300px;        
         overflow: hidden;
    }
+}
+
+.wrap-animal {
+   max-width: 550px;
+   margin:  30px auto;
+   text-align: center;
 }

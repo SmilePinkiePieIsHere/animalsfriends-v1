@@ -14,17 +14,14 @@ function UserSettings(props) {
     }, [props.currentPage])
 
     const logOut = (e) => {  
-        e.preventDefault();   
+        e.preventDefault();  
         
-        //const { cookies } = this.props;
-
         cookies.remove('access_token');
         cookies.remove('refresh_token');
         cookies.remove('username');
         
         setState(oldState => ({isLogedIn: false}));       
-    }
-    
+    }    
 
     return (
         <Nav>            

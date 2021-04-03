@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 
 import { genderAnimal } from '../General/Helpers/enum.js';
 
-import style from "./AnimalCard.scss";
+import style from "./Animal.scss";
 
 function AnimalCard({
     id,
@@ -16,7 +16,7 @@ function AnimalCard({
 
     return (
         <Col>
-            <Card className="wrap-animal">
+            <Card className="animal-card">
                 <Card.Body>
                     <p className="profile-img"><img alt={name} src={profileImg} /></p>
                     <Card.Title>{name}</Card.Title>

@@ -3,6 +3,9 @@ export const genderAnimal  = {
 	female: "жена"
 };
 
-// export default {
-//     genderAnimal
-// }
+export const statusAnimal  = {
+	Adopted: "осиновен",
+	InMedicalCare: "в болница",
+	NeedHome: "търси дом"
+};
+

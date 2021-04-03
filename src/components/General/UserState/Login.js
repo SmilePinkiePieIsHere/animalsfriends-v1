@@ -3,7 +3,7 @@ import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
 import { withCookies } from "react-cookie";
 
 import endpoints from "../../../services/endpoints.js";
-import postData from "../../../services/services";
+import { postData } from "../../../services/services";
 
 class Login extends Component {
     constructor(props) {

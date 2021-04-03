@@ -1,7 +1,7 @@
 import Cookies from 'universal-cookie';
 
 import endpoints from "./endpoints.js";
-import postData from "./services.js";
+import { postData } from "./services.js";
 
 function getAccessToken() {  
     const cookies = new Cookies();

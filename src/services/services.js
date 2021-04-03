@@ -1,5 +1,4 @@
-
-async function postData(url = '', data = {}, onSuccess) {
+export async function postData(url = '', data = {}, onSuccess) {
     await fetch(url, {
         method: 'POST',
         mode: 'cors', // no-cors, *cors, same-origin
@@ -18,12 +17,33 @@ async function postData(url = '', data = {}, onSuccess) {
         onSuccess(data);
     })
     .catch(error => {        
-        alert('Error while authorization!');
-        // <Alert variant='danger'>Error while authorization!</Alert>
+        alert('Error while authorization!');       
         console.log(error)
     });
 }
 
-export default postData;
+export async function postAuthData(url = '', data = {}, accessToken, onSuccess) {  
+    await fetch(url, {
+        method: 'POST',        
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + accessToken       
+        },            
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then((data) => {       
+        onSuccess(data);
+    })
+    .catch(error => {    
+        console.log(error)
+    });
+}
+
+// export default {
+//     postData,
+//     postAuthData
+// };
 
 

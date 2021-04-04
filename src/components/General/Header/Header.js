@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import Navigation from "../Navigation";
 import UserSettings from "../UserState/UserSettings";
 
-import style from "./Header.scss";
+import "./Header.scss";
 
 let mainMenuItems = [
     { id: 1, title: 'За нас', link: '/for-us' },
@@ -12,7 +12,6 @@ let mainMenuItems = [
 ];
 
 function Header() {    
-    console.log(useLocation().pathname);
     return (
         <header className="wrapper-header" >
             <Navbar bg="light" expand="lg">               

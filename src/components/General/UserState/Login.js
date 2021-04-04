@@ -18,7 +18,7 @@ class Login extends Component {
     onSubmitHandler(e) {
         e.preventDefault();
 
-        const { cookies, history, match, location } = this.props;
+        const { cookies, history } = this.props;
         let user = {
             username: e.target.username.value,
             password: e.target.password.value

@@ -8,8 +8,7 @@ import AnimalFormView from "../Animals/AnimalFormView";
 class AnimalAdd extends Component {
     constructor(props) {
         super(props);
-
-        const { cookies } = props;
+       
         this.state = {
             name: '',
             gender: '',            

@@ -10,7 +10,7 @@ import endpoints from "../../services/endpoints.js";
 import { deleteAuthData } from "../../services/services.js";
 import { genderAnimal, statusAnimal } from '../General/Helpers/enum.js';
 
-import style from "./Animal.scss";
+import "./AnimalDetails.scss";
 
 function AnimalDetails({
     match,
@@ -21,7 +21,7 @@ function AnimalDetails({
     const [alertModal, setAlertModal] = useState(false);    
     const [cookies] = useCookies(['username']);   
 
-    let isLoggedIn = !(typeof (cookies.username) == "undefined" || cookies.username == "undefined");
+    let isLoggedIn = !(typeof (cookies.username) === "undefined" || cookies.username === "undefined");
 
     useEffect(() => {
         animalsService.default.getAnimal(match.params.animalId)

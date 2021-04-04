@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import Navigation from "../General/Navigation";
 
 let mainMenuItems = [

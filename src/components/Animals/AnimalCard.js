@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 
 import { genderAnimal } from '../General/Helpers/enum.js';
 
-import style from "./Animal.scss";
+import "./AnimalCard.scss";
 
 function AnimalCard({
     id,
@@ -12,7 +12,7 @@ function AnimalCard({
     gender
 }) {
     const [cookies] = useCookies(['username']);
-    let isNotLoggedIn = typeof (cookies.username) == "undefined" || cookies.username == "undefined";
+    let isNotLoggedIn = typeof (cookies.username) === "undefined" || cookies.username === "undefined";
 
     return (
         <Col>

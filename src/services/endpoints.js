@@ -5,6 +5,5 @@ export default {
     animals: `${baseUrl}/animals`,
     users: `${baseUrl}/user`,
     userLogin: `${baseUrl}/user/login`,
-    userRefresh: `${baseUrl}/user/refresh_token`,
-    posts: `${baseUrl}/posts`,
+    userRefresh: `${baseUrl}/user/refresh_token`
 }

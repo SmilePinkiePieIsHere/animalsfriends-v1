@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Alert } from "react-bootstrap";
 
-import style from "./AlertNotification.scss";
+import "./AlertNotification.scss";
 
 function AlertNotification({
     heading,

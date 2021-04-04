@@ -27,7 +27,7 @@ class Animals extends Component {
     componentDidUpdate(prevProps) {
         const status = this.props.location.search; //this.props.match.params.status;
 
-        if (prevProps.location.search == status) { //prevProps.match.params.status == status
+        if (prevProps.location.search === status) { //prevProps.match.params.status == status
             return;
         }
 

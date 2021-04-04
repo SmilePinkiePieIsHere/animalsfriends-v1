@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
 function UserSettings(props) {          
-    const [cookies, setCookie] = useCookies(['username']);
+    const [cookies] = useCookies(['username']);
     const [state, setState] = useState({
         isLogedIn: false
     });
 
     useEffect(() => {        
-        setState(oldState => ({isLogedIn: cookies.username != undefined}));   
+        setState(oldState => ({isLogedIn: cookies.username !== undefined}));   
     }, [props.currentPage])
 
     const logOut = (e) => {  

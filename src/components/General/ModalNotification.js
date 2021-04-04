@@ -1,6 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
 
-import style from "./ModalNotification.scss";
+import "./ModalNotification.scss";
 
 function ModalNotification({
     text,

@@ -23,12 +23,12 @@ class AnimalAdd extends Component {
         }
     }   
     
-    // hideAlert (e) {  
-    //     this.setState({
-    //         showAlert: false,
-    //         alertText: ""
-    //     });
-    // }
+    hideAlert = () => {  
+        this.setState({
+            showAlert: false,
+            alertText: ""
+        });
+    }
 
     onEditSubmitHandler(e) {   
         e.preventDefault();
@@ -42,8 +42,7 @@ class AnimalAdd extends Component {
             description: this.state.description,
             profileImg: ''
         }   
-        
-        debugger;
+
         this.setState({
             showAlert: true,
             alertText: "Успешно добавихте животно!."
@@ -58,14 +57,10 @@ class AnimalAdd extends Component {
             }
             else { 
                 debugger;
-                // this.setState({
-                //     showAlert: true,
-                //     alertText: "Успешно добавихте животно!."
-                // });
-                //setPopUp(true);      
-                //updateAnimals();                
-                
-                history.push("/animals");
+                //updateAnimals(); 
+                setTimeout(() => {
+                    history.push("/animals");
+                  }, 3000);
             }
         })  
     };
@@ -87,7 +82,11 @@ class AnimalAdd extends Component {
                     animalDescription={this.state.description}
                     setAnimalDescription={(description) => this.setState({description})}
                 />
-                {/* <AlertNotification text={this.state.alertText} heading="Грешка!" variant="danger" show={this.state.showAlert} onClose={this.hideAlert.bind(this)} /> */}
+                {this.state.showAlert
+                    ? (<AlertNotification text={this.state.alertText} heading="Грешка!" variant="danger" show={this.state.showAlert} onClose={this.hideAlert.bind(this)} />)
+                    : null       
+                }
+                
             </Fragment>
         )
     };

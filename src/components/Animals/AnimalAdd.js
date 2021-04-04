@@ -18,21 +18,42 @@ class AnimalAdd extends Component {
             species: '',
             description: '',
             profileImg: '',
-            showAlert: false,
-            alertText: ''
+            alertShow: false,
+            alertText: '',
+            alertTitle: '',
+            alertClass: ''
         }
     }   
     
     hideAlert = () => {  
         this.setState({
-            showAlert: false,
-            alertText: ""
+            alertShow: false,
+            alertText: "",
+            alertTitle: "",
+            alertClass: ""
+        });
+    }
+
+    successAlert = () => {  
+        this.setState({
+            alertShow: true,
+            alertText: "Успешно добавихте животно!.",            
+            alertClass: 'success'
+        });
+    }
+
+    errorAlert = () => {  
+        this.setState({
+            alertShow: true,
+            alertText: "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно.",            
+            alertClass: 'danger'
         });
     }
 
     onEditSubmitHandler(e) {   
         e.preventDefault();
-        const { state, history } = this.props;
+        const parrentScope = this;
+        const { history } = this.props;
 
         let animal = {
             name: this.state.name,
@@ -41,33 +62,28 @@ class AnimalAdd extends Component {
             species: this.state.species,
             description: this.state.description,
             profileImg: ''
-        }   
-
-        this.setState({
-            showAlert: true,
-            alertText: "Успешно добавихте животно!."
-        });
-
+        }               
+        
         postAuthData(endpoints.animals, animal, function (data){   
-            if(data.status >= 300){
-                // this.setState({
-                //     showAlert: true,
-                //     alertText: "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно."
-                // });    
-            }
-            else { 
-                debugger;
-                //updateAnimals(); 
-                setTimeout(() => {
-                    history.push("/animals");
-                  }, 3000);
-            }
+            parrentScope.successAlert();
+
+            setTimeout(() => {
+                history.push("/animals");
+              }, 2000);
+           
+        }, function (error){   
+            parrentScope.errorAlert();
         })  
     };
 
     render() {
         return (
             <Fragment>
+                {
+                    this.state.alertShow
+                    ? (<AlertNotification text={this.state.alertText} heading={this.state.alertTitle} variant={this.state.alertClass} show={this.state.alertShow} onClose={this.hideAlert.bind(this)} />)
+                    : null       
+                }
                 <AnimalFormView
                     onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
                     buttonTitle="Добави"
@@ -81,12 +97,7 @@ class AnimalAdd extends Component {
                     setAnimalSpecies={(species) => this.setState({species})}
                     animalDescription={this.state.description}
                     setAnimalDescription={(description) => this.setState({description})}
-                />
-                {this.state.showAlert
-                    ? (<AlertNotification text={this.state.alertText} heading="Грешка!" variant="danger" show={this.state.showAlert} onClose={this.hideAlert.bind(this)} />)
-                    : null       
-                }
-                
+                />                
             </Fragment>
         )
     };

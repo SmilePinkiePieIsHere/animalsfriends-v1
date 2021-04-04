@@ -1,4 +1,9 @@
-.wrap-alert {    
+.wrap-alert.alert {   
+   z-index: 100;
+   position: fixed;
+   top: 30%;
+   left: 0;
+   right: 0; 
    max-width: 770px;
    margin: 0 auto;
    text-align: center;

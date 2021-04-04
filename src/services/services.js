@@ -21,12 +21,12 @@ export async function postData(url = '', data = {}, onSuccess) {
         onSuccess(data);
     })
     .catch(error => {        
-        alert('Error while authorization!');       
+        alert('Грешка при оторизацията!');       
         console.log(error)
     });
 }
 
-export async function postAuthData(url = '', data = {}, onSuccess) {  
+export async function postAuthData(url = '', data = {}, onSuccess, onFailure) {  
     await fetch(url, {
         method: 'POST',
         mode: 'cors', // no-cors, *cors, same-origin
@@ -45,8 +45,9 @@ export async function postAuthData(url = '', data = {}, onSuccess) {
     .then((data) => {  
         onSuccess(data);
     })
-    .catch(error => {               
-        console.log(error)
+    .catch(error => {       
+        console.log(error); 
+        onFailure(error);
     });
 }
 

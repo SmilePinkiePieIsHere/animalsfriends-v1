@@ -63,13 +63,13 @@ class AnimalAdd extends Component {
             description: this.state.description,
             profileImg: ''
         }               
-        
-        postAuthData(endpoints.animals, animal, function (data){   
+        debugger;
+        postAuthData(endpoints.animals, animal, function (data){               
             parrentScope.successAlert();
 
             setTimeout(() => {
                 history.push("/animals");
-              }, 2000);
+              }, 3000);
            
         }, function (error){   
             parrentScope.errorAlert();

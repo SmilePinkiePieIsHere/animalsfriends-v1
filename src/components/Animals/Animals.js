@@ -1,10 +1,12 @@
 import { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
-import * as animalsService from "../../services/animalsService";
-
 import AnimalCard from "./AnimalCard";
 import AnimalsFilters from '../Animals/AnimalsFilters';
+
+import * as animalsService from "../../services/animalsService";
+
+import "./Animals.scss";
 
 class Animals extends Component {
     constructor(props) {
@@ -40,14 +42,17 @@ class Animals extends Component {
 
     render() {
         return (
-            <Container>
-                <Row><AnimalsFilters /></Row>
-                <Row>
-                    {this.state.animals?.map(x =>
-                        <AnimalCard key={x.id} {...x} />
-                    )}
-                </Row>
-            </Container>);
+            <div className="wrap-animals">
+                <Container>                
+                    <Row><AnimalsFilters /></Row>
+                    <Row>
+                        {this.state.animals?.map(x =>
+                            <AnimalCard key={x.id} {...x} />
+                        )}
+                    </Row>
+                </Container>
+            </div>
+            );
     };
 }
 

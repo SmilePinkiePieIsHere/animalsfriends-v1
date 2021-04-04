@@ -54,7 +54,7 @@ function AnimalFormView({
                             {/* <Form.Control type="text" name="species" value={speciesAnimal[animalSpecies]} onChange={(e) => setAnimalSpecies(e.target.value)}  placeholder="Вид животно" /> */}
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control type="text" name="description" value={animalDescription} onChange={(e) => setAnimalDescription(e.target.value)}  placeholder="Описание" />
+                            <Form.Control type="textarea" rows={3} name="description" value={animalDescription} onChange={(e) => setAnimalDescription(e.target.value)}  placeholder="Описание" />
                         </Form.Group>
                         <Button variant="primary" type="submit">{buttonTitle}</Button>
                     </Form>

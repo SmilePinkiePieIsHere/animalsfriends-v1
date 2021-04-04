@@ -61,7 +61,13 @@ function AnimalDetails({
             <Col> 
                 <Card className="wrap-animal">
                     <Card.Body>
-                        <p className="profile-img"><img alt={animal.name} src={animal.profileImg} /></p>
+                        <p className="profile-img">
+                            {
+                                animal.profileImg
+                                ? <img alt={animal.name} src={animal.profileImg} />
+                                : <span className="no-image">No image</span>
+                            }                            
+                        </p>
                         <Card.Title>{animal.name}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{genderAnimal[animal.gender]}/{statusAnimal[animal.currentStatus]}</Card.Subtitle>
                         <Card.Text>{animal.description}</Card.Text>

@@ -6,5 +6,15 @@
         height: 210px;
         max-width: 300px;        
         overflow: hidden;
-   }
+
+        .no-image {
+         display: block;
+         width: 300px;
+         height: 210px;
+         margin: 0 auto;
+         text-align: center;
+         color: rgb(255, 255, 255);
+         background: rgb(117, 116, 116);
+      }
+   }   
 }

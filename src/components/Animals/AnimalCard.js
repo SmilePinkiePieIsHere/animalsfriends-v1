@@ -18,7 +18,13 @@ function AnimalCard({
         <Col>
             <Card className="animal-card">
                 <Card.Body>
-                    <p className="profile-img"><img alt={name} src={profileImg} /></p>
+                    <p className="profile-img">
+                        {
+                            profileImg
+                            ? <img alt={name} src={profileImg} />
+                            : <span className="no-image">No image</span>
+                        }
+                    </p>
                     <Card.Title>{name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{genderAnimal[gender]}</Card.Subtitle>
                     <div className="details">

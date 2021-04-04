@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 import "./UserSettings.scss";
 
 function UserSettings(props) {    
-    const [cookies, removeCookie] = useCookies();
+    const [cookies, setCookie, removeCookie] = useCookies();
     const [state, setState] = useState({
         isLogedIn: false
     });
@@ -16,7 +16,7 @@ function UserSettings(props) {
     }, [props.currentPage])
 
     const logOut = (e) => {  
-        e.preventDefault();         
+        e.preventDefault(); 
 
         removeCookie('access_token');
         removeCookie('refresh_token');

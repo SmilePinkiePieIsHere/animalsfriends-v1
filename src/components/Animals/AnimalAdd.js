@@ -23,12 +23,17 @@ class AnimalAdd extends Component {
         }
     }   
     
-    hideAlert (e) {  
-        // setAlertModal(false);
-        // history.goBack();
-    }
+    // hideAlert (e) {  
+    //     this.setState({
+    //         showAlert: false,
+    //         alertText: ""
+    //     });
+    // }
 
     onEditSubmitHandler(e) {   
+        e.preventDefault();
+        const { state, history } = this.props;
+
         let animal = {
             name: this.state.name,
             gender: this.state.gender,
@@ -36,33 +41,33 @@ class AnimalAdd extends Component {
             species: this.state.species,
             description: this.state.description,
             profileImg: ''
-        }      
-
-        debugger;
+        }   
         
+        debugger;
+        this.setState({
+            showAlert: true,
+            alertText: "Успешно добавихте животно!."
+        });
+
         postAuthData(endpoints.animals, animal, function (data){   
-            debugger;
-            if(data.status > 300){
-                debugger;
-                this.setState({
-                    showAlert: true,
-                    alertText: "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно."
-                });
-                //setPopUp(true);              
+            if(data.status >= 300){
+                // this.setState({
+                //     showAlert: true,
+                //     alertText: "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно."
+                // });    
             }
             else { 
                 debugger;
-                this.setState({
-                    showAlert: true,
-                    alertText: "Успешно добавихте животно!."
-                });
+                // this.setState({
+                //     showAlert: true,
+                //     alertText: "Успешно добавихте животно!."
+                // });
                 //setPopUp(true);      
-                //updateAnimals();
-                console.log(this.props);
-                this.props.history.push("/animals");
+                //updateAnimals();                
+                
+                history.push("/animals");
             }
         })  
-        //animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState);
     };
 
     render() {
@@ -82,7 +87,7 @@ class AnimalAdd extends Component {
                     animalDescription={this.state.description}
                     setAnimalDescription={(description) => this.setState({description})}
                 />
-                <AlertNotification text={this.state.alertText} heading="Грешка!" variant="danger" show={this.state.showAlert} onClose={this.hideAlert.bind(this)} />
+                {/* <AlertNotification text={this.state.alertText} heading="Грешка!" variant="danger" show={this.state.showAlert} onClose={this.hideAlert.bind(this)} /> */}
             </Fragment>
         )
     };

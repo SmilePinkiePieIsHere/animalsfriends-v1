@@ -10,6 +10,7 @@ function AlertNotification({
     show,
     onClose
 }) {
+  debugger;
    
     const onSubmitHandler = () => {
       onClose();

@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 import "./UserSettings.scss";
 
 function UserSettings(props) {    
-    const [cookies, setCookie, removeCookie] = useCookies(); //['username']
+    const [cookies, removeCookie] = useCookies();
     const [state, setState] = useState({
         isLogedIn: false
     });
@@ -31,7 +31,7 @@ function UserSettings(props) {
                 <Link to="/login" className="nav-item">Вход</Link>
             ) : (
                 <NavDropdown title={cookies.username} id="nav-dropdown" className="nav-item" >
-                    <NavDropdown.Item><Link to="/animals/add">Добави Животно</Link></NavDropdown.Item>
+                    <Link className="dropdown-item" to="/animals/add">Добави Животно</Link>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={logOut} >Изход</NavDropdown.Item>
                 </NavDropdown>

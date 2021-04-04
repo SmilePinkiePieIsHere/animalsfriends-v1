@@ -55,7 +55,8 @@ export async function deleteAuthData(url = '', onSuccess) {
         }
     })
     .then(res => res.json())
-    .then((data) => {       
+    .then((data) => {      
+        debugger; 
         onSuccess(data);
     })
     .catch(error => {  

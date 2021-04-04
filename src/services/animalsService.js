@@ -1,7 +1,6 @@
 import { Alert } from "react-bootstrap";
 
 import endpoints from "./endpoints.js";
-import { postAuthData } from "./services.js";
 
 function getAll(status) {
     let animalsURL = endpoints.animals + ((status) ? `${status}` : '');
@@ -23,30 +22,9 @@ function getAnimal(animalId) {
         });
 }
 
-function addAnimal(name, description, gender, species, currentState) {
-    let animal = {
-        name: name,
-        gender: gender,
-        currentState: currentState,
-        species: species,
-        description: description,
-        profileImg: ''
-    }       
-
-    postAuthData(endpoints.animals, animal, function (data){        
-        if(!data){
-            return <Alert variant='danger'>Error while adding new animal to the server!</Alert>;
-        }
-        else {
-            return data;
-        }
-    })  
-}
-
 var animalsActions = {
     getAll,
-    getAnimal,
-    addAnimal
+    getAnimal   
 }
 
 export default animalsActions;

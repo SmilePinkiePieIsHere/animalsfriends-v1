@@ -50,10 +50,8 @@ function AnimalDetails({
                 setAlertModal(true);                
             }
             else {       
-                //need to update state of animals 
                 updateAnimals();
                 history.push("/animals");
-                // history.goBack();                
             }
         });
     }   
@@ -70,7 +68,7 @@ function AnimalDetails({
                         {isLoggedIn ? (
                             <Card.Text className="details">
                             <Card.Link href={`/animals/${animal.id}/edit`}>Редактирай</Card.Link>
-                            <Card.Link onClick={popUpDelete}>Изтрий</Card.Link>                       
+                            <Card.Link onClick={popUpDelete} className="delete">Изтрий</Card.Link>                       
                         </Card.Text>
                         ) : null}                    
                     </Card.Body>

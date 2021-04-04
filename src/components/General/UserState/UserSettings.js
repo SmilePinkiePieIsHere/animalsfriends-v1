@@ -3,8 +3,8 @@ import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
-function UserSettings(props) {          
-    const [cookies] = useCookies(['username']);
+function UserSettings(props) {    
+    const [cookies, setCookie, removeCookie] = useCookies(); //['username']
     const [state, setState] = useState({
         isLogedIn: false
     });
@@ -14,11 +14,11 @@ function UserSettings(props) {
     }, [props.currentPage])
 
     const logOut = (e) => {  
-        e.preventDefault();  
-        
-        cookies.remove('access_token');
-        cookies.remove('refresh_token');
-        cookies.remove('username');
+        e.preventDefault();         
+
+        removeCookie('access_token');
+        removeCookie('refresh_token');
+        removeCookie('username');
         
         setState(oldState => ({isLogedIn: false}));       
     }    

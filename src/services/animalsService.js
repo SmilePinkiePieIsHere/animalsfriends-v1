@@ -43,10 +43,10 @@ function addAnimal(name, description, gender, species, currentState) {
     })  
 }
 
-var test = {
+var animalsActions = {
     getAll,
     getAnimal,
     addAnimal
 }
 
-export default test;
+export default animalsActions;

@@ -63,9 +63,5 @@ export async function deleteAuthData(url = '', onSuccess) {
     });
 }
 
-// export default {
-//     postData,
-//     postAuthData
-// };
 
 

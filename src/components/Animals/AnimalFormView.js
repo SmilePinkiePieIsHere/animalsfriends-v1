@@ -16,6 +16,12 @@ function AnimalFormView({
     animalDescription,
     setAnimalDescription
 }) {
+    //debugger;
+    let isFemale = (genderAnimal[animalGender] === "жена");
+    let isMale = (genderAnimal[animalGender] === "мъж");
+    let status = statusAnimal[animalStatus];
+    let type = speciesAnimal[animalSpecies];
+
     return (
         <Container>
             <Row>
@@ -26,28 +32,24 @@ function AnimalFormView({
                             <Form.Control type="text" name="name" value={animalName} onChange={(e) => setAnimalName(e.target.value)}  placeholder="Име" />
                         </Form.Group>                        
                         <Form.Group controlId="formBasicCheckbox" onChange={(e) => setAnimalGender(e.target.value)}>
-                            <Form.Check inline label="мъж" type="radio" id="1" name="gender" />
-                            <Form.Check inline label="жена" type="radio" id="2" name="gender" selected/>    
-                            {genderAnimal[animalGender]}                   
+                            <Form.Check inline label="мъж" type="radio" id="1" name="gender" defaultChecked={isMale} />
+                            <Form.Check inline label="жена" type="radio" id="2" name="gender" defaultChecked={isFemale} /> 
                             {/* <Form.Control type="text" name="gender" value={animalGender} onChange={(e) => setAnimalGender(e.target.value)}  placeholder="Пол" /> */}
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control onChange={(e) => setAnimalStatus(e.target.value)} as="select" defaultValue="Избери състояние">
+                            <Form.Control onChange={(e) => setAnimalStatus(e.target.value)} as="select" defaultValue={speciesAnimal[animalSpecies]} >
                                 <option>Избери състояние...</option>
                                 <option>осиновен</option> 
                                 <option>в болница</option>
                                 <option>търси дом</option>
-                                <option>{statusAnimal[animalStatus]}</option>                                
                             </Form.Control>
                             {/* <Form.Control type="text" name="state" value={animalState} onChange={(e) => setAnimalState(e.target.value)}  placeholder="Състояние" /> */}
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control onChange={(e) => setAnimalSpecies(e.target.value)} as="select" defaultValue="Избери вид">
+                            <Form.Control onChange={(e) => setAnimalSpecies(e.target.value)} as="select" defaultValue={speciesAnimal[animalSpecies]}>
                                 <option>Избери вид...</option>
                                 <option>котка</option> 
-                                <option>куче</option>
-                                
-                                <option>{speciesAnimal[animalSpecies]}</option>                                
+                                <option>куче</option>                          
                             </Form.Control>
                             {/* <Form.Control type="text" name="species" value={speciesAnimal[animalSpecies]} onChange={(e) => setAnimalSpecies(e.target.value)}  placeholder="Вид животно" /> */}
                         </Form.Group>

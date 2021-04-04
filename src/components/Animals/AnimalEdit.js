@@ -18,8 +18,7 @@ class AnimalEdit extends Component {
         }
     }
 
-    componentDidMount() {      
-        debugger;
+    componentDidMount() {  
         animalsService.default.getAnimal(this.props.match.params.animalId)
             .then(animal => {
                 this.setState(animal);

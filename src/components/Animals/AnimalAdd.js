@@ -92,7 +92,7 @@ class AnimalAdd extends Component {
                     animalGender={this.state.gender}
                     setAnimalGender={(gender) => this.setState({gender})}
                     animalState={this.state.currentState}
-                    setAnimalState={(currentState) => this.setState({currentState})}
+                    setAnimalStatus={(currentState) => this.setState({currentState})}
                     animalSpecies={this.state.species}
                     setAnimalSpecies={(species) => this.setState({species})}
                     animalDescription={this.state.description}

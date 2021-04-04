@@ -46,7 +46,6 @@ export async function postAuthData(url = '', data = {}, onSuccess) {
 }
 
 export async function deleteAuthData(url = '', onSuccess) {  
-    debugger;
     await fetch(url, {
         method: 'DELETE',        
         headers: {
@@ -59,8 +58,8 @@ export async function deleteAuthData(url = '', onSuccess) {
     .then((data) => {       
         onSuccess(data);
     })
-    .catch(error => {    
-        console.log(error)
+    .catch(error => {  
+        console.log(error);
     });
 }
 

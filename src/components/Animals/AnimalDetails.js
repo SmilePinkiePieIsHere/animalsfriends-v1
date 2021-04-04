@@ -1,20 +1,24 @@
 import { Card, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useEffect, useState, Fragment } from "react";
 import { useCookies } from 'react-cookie';
 
 import ModalNotification from "../General/ModalNotification";
+import AlertNotification from "../General/AlertNotification";
 
 import * as animalsService from "../../services/animalsService";
+import endpoints from "../../services/endpoints.js";
+import { deleteAuthData } from "../../services/services.js";
 import { genderAnimal, statusAnimal } from '../General/Helpers/enum.js';
 
 import style from "./Animal.scss";
 
 function AnimalDetails({
-    match
+    match,
+    history
 }) {
     const [animal, setAnimal] = useState({});
     const [popUp, setPopUp] = useState(false);
+    const [alertModal, setAlertModal] = useState(false);    
     const [cookies] = useCookies(['username']);    
     let isLoggedIn = !(typeof (cookies.username) == "undefined" || cookies.username == "undefined");
 
@@ -24,16 +28,31 @@ function AnimalDetails({
     }, []);
 
     const popUpDelete = (e) => {  
-        setPopUp(true);
+        setPopUp(true);        
     } 
     
     const hidePopUp = (e) => {  
         setPopUp(false);
     } 
+
+    const hideAlert = (e) => {  
+        setAlertModal(false);
+        history.goBack();
+    } 
     
     const deleteAnimal = (e) => {  
-        animalsService.default.removeAnimal(animal.id);
-        setPopUp(false);
+        deleteAuthData(`${endpoints.animals}/${animal.id1}`, function (data){      
+            setPopUp(false);
+            debugger;
+
+            if(data.status > 300){
+                setAlertModal(true);                
+            }
+            else {       
+                //need to update state of animals 
+                history.goBack();                
+            }
+        });
     }   
 
     return (      
@@ -55,6 +74,7 @@ function AnimalDetails({
                 </Card>
             </Col>  
             <ModalNotification text="Сигурен ли сте, че искате да премахнете това животно?" variant="warning" show={popUp} onSuccess={deleteAnimal} onCancel={hidePopUp} />
+            <AlertNotification text="Грешка от страна на сървъра при изтриване на животното. Моля опитайте по-късно." heading="Грешка!" variant="danger" show={alertModal} onClose={hideAlert} />
         </Fragment>       
     );
 }

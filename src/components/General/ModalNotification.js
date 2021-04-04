@@ -8,11 +8,6 @@ function ModalNotification({
     onSuccess,
     onCancel
 }) {
-    // const [popUp, setPopUp] = useState(false);
-
-    // useEffect(() => {
-    //   setPopUp(show);
-    // }, [show]);
     
     const onSubmitHandler = () => {
       onSuccess();
@@ -35,14 +30,7 @@ function ModalNotification({
           <Button onClick={onCancelHandler}>Не</Button>
           <Button onClick={onSubmitHandler} variant="outline-success">Да</Button>
         </Modal.Footer>
-      </Modal>          
-        // <Alert show={show} variant={variant}>
-        //   <Alert.Heading>{text}</Alert.Heading>          
-        //   <div className="d-flex justify-content-end">
-        //     {/* <Button onClick={() => setShow(false)} variant="outline-success">Не</Button> */}
-        //     <Button onClick={onSubmit} variant="outline-success">Да</Button>
-        //   </div>
-        // </Alert>   
+      </Modal> 
     );
   }
   

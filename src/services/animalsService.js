@@ -43,21 +43,12 @@ function addAnimal(name, description, gender, species, currentState) {
     })  
 }
 
-function removeAnimal(animalId) {  
-    debugger;
-    deleteAuthData(`${endpoints.animals}/${animalId}`, function (data){        
-        if(!data){
-            return <Alert variant='danger'>Error while deleting the animal!</Alert>;
-        }
-        else {
-            return data;
-        }
-    })  
-}
+// function removeAnimal(animalId) { 
+   
+// }
 
 export default {
     getAll,
     getAnimal,
-    addAnimal,
-    removeAnimal
+    addAnimal
 }

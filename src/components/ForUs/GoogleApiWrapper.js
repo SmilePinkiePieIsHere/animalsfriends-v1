@@ -51,7 +51,7 @@ class MapContainer extends Component {
                 onClick={this.onMapClicked}
             >
                 <Marker onClick={this.onMarkerClick}
-                    name={'Общински приют Шемшево'} />
+                    name={'Приют Шемшево'} />
                 <InfoWindow
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}

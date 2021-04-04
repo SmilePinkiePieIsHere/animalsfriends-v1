@@ -3,6 +3,8 @@ import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
+import "./UserSettings.scss";
+
 function UserSettings(props) {    
     const [cookies, setCookie, removeCookie] = useCookies(); //['username']
     const [state, setState] = useState({
@@ -24,11 +26,11 @@ function UserSettings(props) {
     }    
 
     return (
-        <Nav>            
+        <Nav className="user-settings" >            
             {!state.isLogedIn ? (
-                <Link to="/login">Вход</Link>
+                <Link to="/login" className="nav-item">Вход</Link>
             ) : (
-                <NavDropdown title={cookies.username} id="basic-nav-dropdown">
+                <NavDropdown title={cookies.username} id="nav-dropdown" className="nav-item" >
                     <NavDropdown.Item><Link to="/animals/add">Добави Животно</Link></NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={logOut} >Изход</NavDropdown.Item>

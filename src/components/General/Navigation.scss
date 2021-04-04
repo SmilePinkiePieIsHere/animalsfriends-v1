@@ -1,0 +1,13 @@
+.nav-item {
+    padding: 0 10px;
+    color:  rgb(33, 39, 21);    
+
+    &.active {
+        color: rgb(226, 255, 173);
+    }
+
+    &:hover {
+        text-decoration: none;
+        color: rgb(169, 241, 34);
+    }
+}

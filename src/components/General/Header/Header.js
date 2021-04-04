@@ -14,9 +14,9 @@ let mainMenuItems = [
 function Header() {    
     return (
         <header className="wrapper-header" >
-            <Navbar bg="light" expand="lg">               
-                <UserSettings currentPage={useLocation().pathname}/> 
-                <Navigation menuItems={mainMenuItems} />     
+            <Navbar expand="lg">         
+                <UserSettings currentPage={useLocation().pathname}/>      
+                <Navigation menuItems={mainMenuItems} />  
             </Navbar>
         </header>
     );

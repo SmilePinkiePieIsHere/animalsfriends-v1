@@ -1,8 +1,16 @@
 .wrap-for-us {   
    min-height: 500px;   
    margin:  30px auto;
+   padding: 10px;
+   border-radius: 5px;
+   background: #e2ffad;
 
    h2 {
       padding: 25px 0;
+   }
+
+   .wrap-map {
+      position: relative;
+      height: 400px;
    }
 }

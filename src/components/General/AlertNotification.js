@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Alert, Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 import style from "./AlertNotification.scss";
 

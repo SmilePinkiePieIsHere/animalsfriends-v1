@@ -19,7 +19,8 @@ function AnimalDetails({
     const [animal, setAnimal] = useState({});
     const [popUp, setPopUp] = useState(false);
     const [alertModal, setAlertModal] = useState(false);    
-    const [cookies] = useCookies(['username']);    
+    const [cookies] = useCookies(['username']);   
+
     let isLoggedIn = !(typeof (cookies.username) == "undefined" || cookies.username == "undefined");
 
     useEffect(() => {
@@ -41,9 +42,8 @@ function AnimalDetails({
     } 
     
     const deleteAnimal = (e) => {  
-        deleteAuthData(`${endpoints.animals}/${animal.id1}`, function (data){      
+        deleteAuthData(`${endpoints.animals}/${animal.id}`, function (data){      
             setPopUp(false);
-            debugger;
 
             if(data.status > 300){
                 setAlertModal(true);                

@@ -1,5 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+
+import style from "./ModalNotification.scss";
 
 function ModalNotification({
     text,
@@ -18,7 +19,7 @@ function ModalNotification({
     }
   
     return (
-      <Modal show={show}>
+      <Modal className={variant} show={show} onHide={onCancelHandler}>
         <Modal.Header closeButton>         
         </Modal.Header>
 

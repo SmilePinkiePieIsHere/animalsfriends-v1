@@ -1,7 +1,7 @@
 import { Alert } from "react-bootstrap";
 
 import endpoints from "./endpoints.js";
-import { postAuthData, deleteAuthData } from "./services.js";
+import { postAuthData } from "./services.js";
 
 function getAll(status) {
     let animalsURL = endpoints.animals + ((status) ? `${status}` : '');
@@ -42,10 +42,6 @@ function addAnimal(name, description, gender, species, currentState) {
         }
     })  
 }
-
-// function removeAnimal(animalId) { 
-   
-// }
 
 export default {
     getAll,

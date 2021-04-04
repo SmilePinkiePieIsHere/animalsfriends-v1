@@ -9,3 +9,8 @@ export const statusAnimal  = {
 	NeedHome: "търси дом"
 };
 
+export const speciesAnimal  = {
+	cat: "котка",
+	dog: "куче"
+};
+

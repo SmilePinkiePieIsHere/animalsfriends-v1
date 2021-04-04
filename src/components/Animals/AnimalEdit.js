@@ -11,7 +11,7 @@ class AnimalEdit extends Component {
         this.state = {
             name: '',
             gender: '',            
-            currentState: '',
+            currentStatus: '',
             species: '',
             description: '',
             profileImg: ''
@@ -19,6 +19,7 @@ class AnimalEdit extends Component {
     }
 
     componentDidMount() {      
+        debugger;
         animalsService.default.getAnimal(this.props.match.params.animalId)
             .then(animal => {
                 this.setState(animal);
@@ -36,9 +37,9 @@ class AnimalEdit extends Component {
             animalName={this.state.name}
             setAnimalName={(name) => this.setState({name})}
             animalGender={this.state.gender}
-            setGenderName={(gender) => this.setState({gender})}
-            animalState={this.state.currentState}
-            setAnimalState={(currentState) => this.setState({currentState})}
+            setAnimalGender={(gender) => this.setState({gender})}
+            animalStatus={this.state.currentStatus}
+            setAnimalStatus={(currentStatus) => this.setState({currentStatus})}
             animalSpecies={this.state.species}
             setAnimalSpecies={(species) => this.setState({species})}
             animalDescription={this.state.description}

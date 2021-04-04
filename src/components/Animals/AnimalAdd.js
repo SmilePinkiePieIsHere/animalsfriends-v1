@@ -37,7 +37,7 @@ class AnimalAdd extends Component {
     successAlert = () => {  
         this.setState({
             alertShow: true,
-            alertText: "Успешно добавихте животно!.",            
+            alertText: "Успешно добавихте животно!",            
             alertClass: 'success'
         });
     }

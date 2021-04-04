@@ -8,12 +8,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <CookiesProvider><App /></CookiesProvider>
+ReactDOM.render(  
+  <CookiesProvider>
+    <BrowserRouter>      
+        <App />       
     </BrowserRouter>
-  </React.StrictMode>,
+  </CookiesProvider>,
   document.getElementById('root')
 );
 

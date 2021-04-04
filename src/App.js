@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Header from "./components/General/Header";
@@ -12,6 +13,12 @@ import Login from "./components/General/UserState/Login";
 import './App.scss';
 
 function App() {
+    const [update, setUpdate] = useState(false);
+
+    const onUpdate = () => {       
+        setUpdate(!update);
+    }
+
     return (
         <main className="wrapper-main">
             <Header />         
@@ -20,7 +27,7 @@ function App() {
                 <Route path="/for-us" component={ForUs} />                
                 <Route path="/animals" exact component={Animals} />
                 <Route path="/animals?status=:status" component={Animals} />
-                <Route path="/animals/details/:animalId" component={AnimalDetails} />                
+                <Route path="/animals/details/:animalId"  render={(props) => <AnimalDetails updateAnimals={onUpdate} {...props}/>} />
                 <Route path="/animals/:animalId/edit" component={AnimalEdit} />
                 <Route path="/animals/add" component={AnimalAdd} />               
             </Switch>

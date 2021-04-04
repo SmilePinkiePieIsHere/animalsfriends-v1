@@ -43,8 +43,10 @@ function addAnimal(name, description, gender, species, currentState) {
     })  
 }
 
-export default {
+var test = {
     getAll,
     getAnimal,
     addAnimal
 }
+
+export default test;

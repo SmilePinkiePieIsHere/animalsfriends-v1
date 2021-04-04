@@ -12,7 +12,7 @@ class Animals extends Component {
 
         this.state = {
             animals: [],
-            currentStatus: '',
+            currentStatus: ''           
         }
     }
 

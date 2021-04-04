@@ -14,7 +14,8 @@ import "./AnimalDetails.scss";
 
 function AnimalDetails({
     match,
-    history
+    history,
+    updateAnimals
 }) {
     const [animal, setAnimal] = useState({});
     const [popUp, setPopUp] = useState(false);
@@ -50,7 +51,9 @@ function AnimalDetails({
             }
             else {       
                 //need to update state of animals 
-                history.goBack();                
+                updateAnimals();
+                history.push("/animals");
+                // history.goBack();                
             }
         });
     }   

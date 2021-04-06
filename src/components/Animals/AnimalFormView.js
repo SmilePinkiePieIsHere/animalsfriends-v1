@@ -15,12 +15,32 @@ function AnimalFormView({
     setAnimalSpecies,
     animalDescription,
     setAnimalDescription
-}) {
-    //debugger;
-    let isFemale = (genderAnimal[animalGender] === "жена");
-    let isMale = (genderAnimal[animalGender] === "мъж");
-    let status = statusAnimal[animalStatus];
-    let type = speciesAnimal[animalSpecies];
+}) {   
+    
+    let statusOptions= [
+        { key: "Choose...", value: "Изберете състояние..."},
+        { key: "Adopted", value: "осиновен"},
+        { key: "InMedicalCare", value: "в болница"},
+        { key: "NeedHome", value: "търси дом" },     
+      ];
+
+    let speciesOptions= [
+        { key: "Choose...", value: "Изберете вид..."},
+        { key: "cat", value: "котка"},
+        { key: "dog", value: "куче"}         
+      ];  
+      
+    let genderOptions= [
+        { key: "Choose...", value: "Изберете пол..."},
+        { key: "female", value: "жена"},
+        { key: "male", value: "мъж"}         
+      ];  
+
+    const bindDropDown = (values) => {
+        return values.map(v => (
+            <option key={v.key} value={v.key}>{v.value}</option>
+          ));
+    }
 
     return (
         <Container>
@@ -31,27 +51,20 @@ function AnimalFormView({
                         <Form.Group>
                             <Form.Control type="text" name="name" value={animalName} onChange={(e) => setAnimalName(e.target.value)}  placeholder="Име" />
                         </Form.Group>                        
-                        <Form.Group controlId="formBasicCheckbox" onChange={(e) => setAnimalGender(e.target.value)}>
-                            <Form.Check inline label="мъж" type="radio" id="1" name="gender" defaultChecked={isMale} />
-                            <Form.Check inline label="жена" type="radio" id="2" name="gender" defaultChecked={isFemale} /> 
-                            {/* <Form.Control type="text" name="gender" value={animalGender} onChange={(e) => setAnimalGender(e.target.value)}  placeholder="Пол" /> */}
+                        <Form.Group>
+                            <Form.Control onChange={(e) => setAnimalGender(e.target.value)} as="select" value={animalGender}>   
+                                {bindDropDown(genderOptions)}                                   
+                            </Form.Control>          
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control onChange={(e) => setAnimalStatus(e.target.value)} as="select" defaultValue={speciesAnimal[animalSpecies]} >
-                                <option>Избери състояние...</option>
-                                <option>осиновен</option> 
-                                <option>в болница</option>
-                                <option>търси дом</option>
-                            </Form.Control>
-                            {/* <Form.Control type="text" name="state" value={animalState} onChange={(e) => setAnimalState(e.target.value)}  placeholder="Състояние" /> */}
+                            <Form.Control onChange={(e) => setAnimalStatus(e.target.value)} as="select" value={animalStatus}>   
+                                {bindDropDown(statusOptions)}                               
+                            </Form.Control>                            
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control onChange={(e) => setAnimalSpecies(e.target.value)} as="select" defaultValue={speciesAnimal[animalSpecies]}>
-                                <option>Избери вид...</option>
-                                <option>котка</option> 
-                                <option>куче</option>                          
-                            </Form.Control>
-                            {/* <Form.Control type="text" name="species" value={speciesAnimal[animalSpecies]} onChange={(e) => setAnimalSpecies(e.target.value)}  placeholder="Вид животно" /> */}
+                            <Form.Control onChange={(e) => setAnimalSpecies(e.target.value)} as="select" value={animalSpecies}>
+                                {bindDropDown(speciesOptions)}                          
+                            </Form.Control>                            
                         </Form.Group>
                         <Form.Group>
                             <Form.Control type="textarea" rows={3} name="description" value={animalDescription} onChange={(e) => setAnimalDescription(e.target.value)}  placeholder="Описание" />

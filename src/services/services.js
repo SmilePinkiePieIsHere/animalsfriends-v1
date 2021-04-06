@@ -26,9 +26,9 @@ export async function postData(url = '', data = {}, onSuccess) {
     });
 }
 
-export async function postAuthData(url = '', data = {}, onSuccess, onFailure) {  
+export async function postAuthData(url = '', data = {}, onSuccess, onFailure, methodRequest = 'POST') {  
     await fetch(url, {
-        method: 'POST',
+        method: methodRequest,
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit       

@@ -37,7 +37,7 @@ class AnimalAdd extends Component {
     successAlert = () => {  
         this.setState({
             alertShow: true,
-            alertText: "Успешно добавихте животно!.",            
+            alertText: "Успешно добавихте животно!",            
             alertClass: 'success'
         });
     }
@@ -63,7 +63,7 @@ class AnimalAdd extends Component {
             description: this.state.description,
             profileImg: ''
         }               
-        debugger;
+        
         postAuthData(endpoints.animals, animal, function (data){               
             parrentScope.successAlert();
 
@@ -92,7 +92,7 @@ class AnimalAdd extends Component {
                     animalGender={this.state.gender}
                     setAnimalGender={(gender) => this.setState({gender})}
                     animalState={this.state.currentState}
-                    setAnimalState={(currentState) => this.setState({currentState})}
+                    setAnimalStatus={(currentState) => this.setState({currentState})}
                     animalSpecies={this.state.species}
                     setAnimalSpecies={(species) => this.setState({species})}
                     animalDescription={this.state.description}

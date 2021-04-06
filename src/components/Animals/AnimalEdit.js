@@ -1,8 +1,10 @@
 import { Component } from 'react';
 
-import * as animalsService from "../../services/animalsService";
-
 import AnimalFormView from "../Animals/AnimalFormView";
+
+import endpoints from "../../services/endpoints.js";
+import { postAuthData } from "../../services/services.js";
+import * as animalsService from "../../services/animalsService";
 
 class AnimalEdit extends Component {
     constructor(props) {
@@ -26,7 +28,30 @@ class AnimalEdit extends Component {
     }
 
     onEditSubmitHandler(e) {
-        animalsService.default.addAnimal(this.state.name, this.state.description, this.state.gender, this.state.species, this.state.currentState);
+        e.preventDefault();
+        //const parrentScope = this;       
+        let { history, match } = this.props;
+
+        let animal = {
+            id: Number(match.params.animalId),
+            name: this.state.name,
+            gender: this.state.gender,
+            currentStatus: this.state.currentStatus,
+            species: this.state.species,
+            description: this.state.description,
+            profileImg: this.state.profileImg
+        }  
+        
+        postAuthData(endpoints.animals + "/" + this.props.match.params.animalId, animal, function (data){               
+            //parrentScope.successAlert();
+            setTimeout(() => {
+                
+                history.push("/animals");
+              }, 3000);
+           
+        }, function (error){   
+            //parrentScope.errorAlert();
+        }, 'PUT')         
     };
 
     render() {

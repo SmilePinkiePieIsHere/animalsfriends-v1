@@ -16,6 +16,7 @@ function AnimalFormView({
     animalDescription,
     setAnimalDescription
 }) {   
+    let test11 = animalStatus;
     
     let statusOptions= [
         { key: "Choose...", value: "Изберете състояние..."},
@@ -40,6 +41,11 @@ function AnimalFormView({
         return values.map(v => (
             <option key={v.key} value={v.key}>{v.value}</option>
           ));
+    }   
+
+    const test = (e) => {
+        var test121 = e.target.value;
+        setAnimalStatus(e.target.value);
     }
 
     return (
@@ -57,7 +63,7 @@ function AnimalFormView({
                             </Form.Control>          
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control onChange={(e) => setAnimalStatus(e.target.value)} as="select" value={animalStatus}>   
+                            <Form.Control onChange={test} as="select" value={animalStatus}>   
                                 {bindDropDown(statusOptions)}                               
                             </Form.Control>                            
                         </Form.Group>

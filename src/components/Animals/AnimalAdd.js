@@ -14,7 +14,7 @@ class AnimalAdd extends Component {
         this.state = {
             name: '',
             gender: '',            
-            currentState: '',
+            currentStatus: '',
             species: '',
             description: '',
             profileImg: '',
@@ -55,11 +55,20 @@ class AnimalAdd extends Component {
         e.preventDefault();
        
         let form = e.currentTarget;
-        if (e.currentTarget.checkValidity() === false) {        
-            debugger;  
+        if (e.currentTarget.checkValidity() === false) {   
           e.stopPropagation();
-          form.gender.value="";
-          
+
+        //   if(form.gender.value == "Choose...") {
+        //     form.gender.value="";
+        //   }
+
+        //   if(form.species.value == "Choose...") {
+        //     form.species.value="";
+        //   }
+
+        //   if(form.status.value == "Choose...") {
+        //     form.status.value="";
+        //   }
         } 
         else {
             const parrentScope = this;
@@ -68,7 +77,7 @@ class AnimalAdd extends Component {
             let animal = {
                 name: this.state.name,
                 gender: this.state.gender,
-                currentState: this.state.currentState,
+                currentStatus: this.state.currentStatus,
                 species: this.state.species,
                 description: this.state.description,
                 profileImg: ''
@@ -107,8 +116,8 @@ class AnimalAdd extends Component {
                     setAnimalName={(name) => this.setState({name})}
                     animalGender={this.state.gender}
                     setAnimalGender={(gender) => this.setState({gender})}
-                    animalState={this.state.currentState}
-                    setAnimalStatus={(currentState) => this.setState({currentState})}
+                    animalStatus={this.state.currentStatus}
+                    setAnimalStatus={(currentStatus) => this.setState({currentStatus})}
                     animalSpecies={this.state.species}
                     setAnimalSpecies={(species) => this.setState({species})}
                     animalDescription={this.state.description}

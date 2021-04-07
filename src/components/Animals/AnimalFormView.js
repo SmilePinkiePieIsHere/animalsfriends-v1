@@ -33,18 +33,13 @@ function AnimalFormView({
         { key: "Choose...", value: "Изберете пол..."},
         { key: "female", value: "жена"},
         { key: "male", value: "мъж"}         
-      ];  
+      ];       
 
     const bindDropDown = (values) => {
         return values.map(v => (
             <option key={v.key} value={v.key}>{v.value}</option>
           ));
     }   
-
-    // const test = (e) => {
-    //     var test121 = e.target.value;
-    //     setAnimalStatus(e.target.value);
-    // }
 
     return (
         <Container>
@@ -53,29 +48,30 @@ function AnimalFormView({
                 <Col xs={6}>
                     <Form className="form-view" noValidate validated={validated} onSubmit={onSubmitHandler}>
                         <Form.Group>
-                            <Form.Control required type="text" name="name" onChange={(e) => setAnimalName(e.target.value)}  placeholder="Име" value={animalName} />
+                            <Form.Control required type="text" name="name" onChange={(e) => setAnimalName(e.target.value)} value={animalName} placeholder="Име" />
                             <Form.Control.Feedback type="invalid">Моля, въведете име.</Form.Control.Feedback>
                         </Form.Group>                        
                         <Form.Group>
-                            <Form.Control required type="select" className={`box ${true ? "" : "hidden"}`} name="gender" onChange={(e) => setAnimalGender(e.target.value)} as="select" value={animalGender}>   
+                            <Form.Control type="select" name="gender" onChange={(e) => setAnimalGender(e.target.value)} as="select" value={animalGender}  >   
                                 {bindDropDown(genderOptions)}                                   
                             </Form.Control>        
-                            <Form.Control.Feedback type="invalid">Моля, изберете пол.</Form.Control.Feedback>  
+                            {/* <Form.Control.Feedback type="invalid">Моля, изберете пол.</Form.Control.Feedback>   */}
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control required type="select" onChange={(e) => setAnimalStatus(e.target.value)} as="select" value={animalStatus}>   
+                            <Form.Control type="select" name="status" onChange={(e) => setAnimalStatus(e.target.value)} as="select" value={animalStatus}>   
                                 {bindDropDown(statusOptions)}                               
                             </Form.Control>        
-                            <Form.Control.Feedback type="invalid">Моля, изберете състояние.</Form.Control.Feedback>                      
+                            {/* <Form.Control.Feedback type="invalid">Моля, изберете състояние.</Form.Control.Feedback>*/}
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control required onChange={(e) => setAnimalSpecies(e.target.value)} as="select" value={animalSpecies}>
+                            <Form.Control type="select"  name="species" onChange={(e) => setAnimalSpecies(e.target.value)} as="select" value={animalSpecies}>
                                 {bindDropDown(speciesOptions)}                          
                             </Form.Control>     
-                            <Form.Control.Feedback type="invalid">Моля, изберете вид.</Form.Control.Feedback>                         
+                            {/* <Form.Control.Feedback type="invalid">Моля, изберете вид.</Form.Control.Feedback>*/}
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control type="textarea" rows={3} name="description" value={animalDescription} onChange={(e) => setAnimalDescription(e.target.value)}  placeholder="Описание" />
+                            <Form.Control required type="textarea" as="textarea" rows={3} name="description" onChange={(e) => setAnimalDescription(e.target.value)} value={animalDescription} placeholder="Описание" />
+                            <Form.Control.Feedback type="invalid">Моля, въведете кратко описание.</Form.Control.Feedback>
                         </Form.Group>
                         <Button variant="primary" type="submit">{buttonTitle}</Button>
                     </Form>

@@ -54,21 +54,13 @@ class AnimalAdd extends Component {
     onEditSubmitHandler(e) {   
         e.preventDefault();
        
-        let form = e.currentTarget;
         if (e.currentTarget.checkValidity() === false) {   
           e.stopPropagation();
 
         //   if(form.gender.value == "Choose...") {
         //     form.gender.value="";
         //   }
-
-        //   if(form.species.value == "Choose...") {
-        //     form.species.value="";
-        //   }
-
-        //   if(form.status.value == "Choose...") {
-        //     form.status.value="";
-        //   }
+        
         } 
         else {
             const parrentScope = this;

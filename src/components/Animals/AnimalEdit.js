@@ -16,7 +16,8 @@ class AnimalEdit extends Component {
             currentStatus: '',
             species: '',
             description: '',
-            profileImg: ''
+            profileImg: '',
+            isValid: false
         }
     }
 
@@ -29,35 +30,51 @@ class AnimalEdit extends Component {
 
     onEditSubmitHandler(e) {
         e.preventDefault();
-        //const parrentScope = this;       
-        let { history, match } = this.props;
-
-        let animal = {
-            id: Number(match.params.animalId),
-            name: this.state.name,
-            gender: this.state.gender,
-            currentStatus: this.state.currentStatus,
-            species: this.state.species,
-            description: this.state.description,
-            profileImg: this.state.profileImg
-        }  
+        //const parrentScope = this;   
         
-        postAuthData(endpoints.animals + "/" + this.props.match.params.animalId, animal, function (data){               
-            //parrentScope.successAlert();
-            setTimeout(() => {
-                
-                history.push("/animals");
-              }, 3000);
-           
-        }, function (error){   
-            //parrentScope.errorAlert();
-        }, 'PUT')         
+        if (e.currentTarget.checkValidity() === false) {   
+            e.stopPropagation();
+  
+          //   if(form.gender.value == "Choose...") {
+          //     form.gender.value="";
+          //   }
+          
+        } 
+        else {
+            let { history, match } = this.props;
+
+            let animal = {
+                id: Number(match.params.animalId),
+                name: this.state.name,
+                gender: this.state.gender,
+                currentStatus: this.state.currentStatus,
+                species: this.state.species,
+                description: this.state.description,
+                profileImg: this.state.profileImg
+            }  
+            
+            postAuthData(endpoints.animals + "/" + this.props.match.params.animalId, animal, function (data){               
+                //parrentScope.successAlert();
+                setTimeout(() => {
+                    
+                    history.push("/animals");
+                  }, 3000);
+               
+            }, function (error){   
+                //parrentScope.errorAlert();
+            }, 'PUT')    
+        } 
+
+        this.setState({
+            isValid: true
+        });
     };
 
     render() {
         return <AnimalFormView
             onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
             buttonTitle="Запази"
+            validated={this.state.isValid}
             animalName={this.state.name}
             setAnimalName={(name) => this.setState({name})}
             animalGender={this.state.gender}

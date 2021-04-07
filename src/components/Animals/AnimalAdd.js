@@ -21,7 +21,8 @@ class AnimalAdd extends Component {
             alertShow: false,
             alertText: '',
             alertTitle: '',
-            alertClass: ''
+            alertClass: '',
+            isValid: false
         }
     }   
     
@@ -52,28 +53,42 @@ class AnimalAdd extends Component {
 
     onEditSubmitHandler(e) {   
         e.preventDefault();
-        const parrentScope = this;
-        const { history } = this.props;
-
-        let animal = {
-            name: this.state.name,
-            gender: this.state.gender,
-            currentState: this.state.currentState,
-            species: this.state.species,
-            description: this.state.description,
-            profileImg: ''
-        }               
+       
+        let form = e.currentTarget;
+        if (e.currentTarget.checkValidity() === false) {        
+            debugger;  
+          e.stopPropagation();
+          form.gender.value="";
+          
+        } 
+        else {
+            const parrentScope = this;
+            const { history } = this.props;
+    
+            let animal = {
+                name: this.state.name,
+                gender: this.state.gender,
+                currentState: this.state.currentState,
+                species: this.state.species,
+                description: this.state.description,
+                profileImg: ''
+            }      
+            
+            postAuthData(endpoints.animals, animal, function (data){               
+                parrentScope.successAlert();
+    
+                setTimeout(() => {
+                    history.push("/animals");
+                  }, 3000);
+               
+            }, function (error){   
+                parrentScope.errorAlert();
+            })  
+        }    
         
-        postAuthData(endpoints.animals, animal, function (data){               
-            parrentScope.successAlert();
-
-            setTimeout(() => {
-                history.push("/animals");
-              }, 3000);
-           
-        }, function (error){   
-            parrentScope.errorAlert();
-        })  
+        this.setState({
+            isValid: true
+        });
     };
 
     render() {
@@ -87,6 +102,7 @@ class AnimalAdd extends Component {
                 <AnimalFormView
                     onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
                     buttonTitle="Добави"
+                    validated={this.state.isValid}                   
                     animalName={this.state.name}
                     setAnimalName={(name) => this.setState({name})}
                     animalGender={this.state.gender}

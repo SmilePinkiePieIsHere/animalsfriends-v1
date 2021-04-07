@@ -1,9 +1,8 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-import { genderAnimal, statusAnimal, speciesAnimal } from '../General/Helpers/enum.js';
-
 function AnimalFormView({
     onSubmitHandler,
+    validated,
     buttonTitle,
     animalName,
     setAnimalName,
@@ -16,7 +15,6 @@ function AnimalFormView({
     animalDescription,
     setAnimalDescription
 }) {   
-    let test11 = animalStatus;
     
     let statusOptions= [
         { key: "Choose...", value: "Изберете състояние..."},
@@ -43,34 +41,38 @@ function AnimalFormView({
           ));
     }   
 
-    const test = (e) => {
-        var test121 = e.target.value;
-        setAnimalStatus(e.target.value);
-    }
+    // const test = (e) => {
+    //     var test121 = e.target.value;
+    //     setAnimalStatus(e.target.value);
+    // }
 
     return (
         <Container>
             <Row>
                 <Col></Col>
                 <Col xs={6}>
-                    <Form className="form-view" onSubmit={onSubmitHandler}>
+                    <Form className="form-view" noValidate validated={validated} onSubmit={onSubmitHandler}>
                         <Form.Group>
-                            <Form.Control type="text" name="name" value={animalName} onChange={(e) => setAnimalName(e.target.value)}  placeholder="Име" />
+                            <Form.Control required type="text" name="name" onChange={(e) => setAnimalName(e.target.value)}  placeholder="Име" value={animalName} />
+                            <Form.Control.Feedback type="invalid">Моля, въведете име.</Form.Control.Feedback>
                         </Form.Group>                        
                         <Form.Group>
-                            <Form.Control onChange={(e) => setAnimalGender(e.target.value)} as="select" value={animalGender}>   
+                            <Form.Control required type="select" className={`box ${true ? "" : "hidden"}`} name="gender" onChange={(e) => setAnimalGender(e.target.value)} as="select" value={animalGender}>   
                                 {bindDropDown(genderOptions)}                                   
-                            </Form.Control>          
+                            </Form.Control>        
+                            <Form.Control.Feedback type="invalid">Моля, изберете пол.</Form.Control.Feedback>  
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control onChange={test} as="select" value={animalStatus}>   
+                            <Form.Control required type="select" onChange={(e) => setAnimalStatus(e.target.value)} as="select" value={animalStatus}>   
                                 {bindDropDown(statusOptions)}                               
-                            </Form.Control>                            
+                            </Form.Control>        
+                            <Form.Control.Feedback type="invalid">Моля, изберете състояние.</Form.Control.Feedback>                      
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control onChange={(e) => setAnimalSpecies(e.target.value)} as="select" value={animalSpecies}>
+                            <Form.Control required onChange={(e) => setAnimalSpecies(e.target.value)} as="select" value={animalSpecies}>
                                 {bindDropDown(speciesOptions)}                          
-                            </Form.Control>                            
+                            </Form.Control>     
+                            <Form.Control.Feedback type="invalid">Моля, изберете вид.</Form.Control.Feedback>                         
                         </Form.Group>
                         <Form.Group>
                             <Form.Control type="textarea" rows={3} name="description" value={animalDescription} onChange={(e) => setAnimalDescription(e.target.value)}  placeholder="Описание" />

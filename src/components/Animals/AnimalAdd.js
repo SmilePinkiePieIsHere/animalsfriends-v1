@@ -14,14 +14,15 @@ class AnimalAdd extends Component {
         this.state = {
             name: '',
             gender: '',            
-            currentState: '',
+            currentStatus: '',
             species: '',
             description: '',
             profileImg: '',
             alertShow: false,
             alertText: '',
             alertTitle: '',
-            alertClass: ''
+            alertClass: '',
+            isValid: false
         }
     }   
     
@@ -52,28 +53,51 @@ class AnimalAdd extends Component {
 
     onEditSubmitHandler(e) {   
         e.preventDefault();
-        const parrentScope = this;
-        const { history } = this.props;
+       
+        let form = e.currentTarget;
+        if (e.currentTarget.checkValidity() === false) {   
+          e.stopPropagation();
 
-        let animal = {
-            name: this.state.name,
-            gender: this.state.gender,
-            currentState: this.state.currentState,
-            species: this.state.species,
-            description: this.state.description,
-            profileImg: ''
-        }               
+        //   if(form.gender.value == "Choose...") {
+        //     form.gender.value="";
+        //   }
+
+        //   if(form.species.value == "Choose...") {
+        //     form.species.value="";
+        //   }
+
+        //   if(form.status.value == "Choose...") {
+        //     form.status.value="";
+        //   }
+        } 
+        else {
+            const parrentScope = this;
+            const { history } = this.props;
+    
+            let animal = {
+                name: this.state.name,
+                gender: this.state.gender,
+                currentStatus: this.state.currentStatus,
+                species: this.state.species,
+                description: this.state.description,
+                profileImg: ''
+            }      
+            
+            postAuthData(endpoints.animals, animal, function (data){               
+                parrentScope.successAlert();
+    
+                setTimeout(() => {
+                    history.push("/animals");
+                  }, 3000);
+               
+            }, function (error){   
+                parrentScope.errorAlert();
+            })  
+        }    
         
-        postAuthData(endpoints.animals, animal, function (data){               
-            parrentScope.successAlert();
-
-            setTimeout(() => {
-                history.push("/animals");
-              }, 3000);
-           
-        }, function (error){   
-            parrentScope.errorAlert();
-        })  
+        this.setState({
+            isValid: true
+        });
     };
 
     render() {
@@ -87,12 +111,13 @@ class AnimalAdd extends Component {
                 <AnimalFormView
                     onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
                     buttonTitle="Добави"
+                    validated={this.state.isValid}                   
                     animalName={this.state.name}
                     setAnimalName={(name) => this.setState({name})}
                     animalGender={this.state.gender}
                     setAnimalGender={(gender) => this.setState({gender})}
-                    animalState={this.state.currentState}
-                    setAnimalStatus={(currentState) => this.setState({currentState})}
+                    animalStatus={this.state.currentStatus}
+                    setAnimalStatus={(currentStatus) => this.setState({currentStatus})}
                     animalSpecies={this.state.species}
                     setAnimalSpecies={(species) => this.setState({species})}
                     animalDescription={this.state.description}

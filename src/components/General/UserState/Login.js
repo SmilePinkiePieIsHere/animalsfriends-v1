@@ -57,7 +57,7 @@ class Login extends Component {
                     <Col></Col>
                     <Col xs={6}>
                         <Form className="form-view" noValidate validated={this.state.isValid} onSubmit={this.onSubmitHandler.bind(this)}>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group>
                                 <Form.Label>Потребителско име:</Form.Label>
                                 <Form.Control required type="text" name="username" placeholder="Име" />
                                 <Form.Control.Feedback type="invalid">Моля, въведете потребителско име.</Form.Control.Feedback>

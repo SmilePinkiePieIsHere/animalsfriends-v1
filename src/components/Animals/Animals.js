@@ -23,11 +23,7 @@ class Animals extends Component {
             .getAll()
             .then(res => {
                 this.setState({ animals: res })
-            });
-
-        if (Math.random() > 0.9) {
-            throw new Error("Error!");
-        }
+            });        
     }
 
     componentDidUpdate(prevProps) {

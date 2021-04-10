@@ -33,12 +33,7 @@ class AnimalEdit extends Component {
         //const parrentScope = this;   
         
         if (e.currentTarget.checkValidity() === false) {   
-            e.stopPropagation();
-  
-          //   if(form.gender.value == "Choose...") {
-          //     form.gender.value="";
-          //   }
-          
+            e.stopPropagation();        
         } 
         else {
             let { history, match } = this.props;

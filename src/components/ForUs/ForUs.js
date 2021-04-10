@@ -6,6 +6,13 @@ import GoogleApiWrapper from "./GoogleApiWrapper";
 import "./ForUs.scss";
 
 class ForUs extends Component {
+
+    componentDidMount() {
+        if (Math.random() > 0.9) {
+            throw new Error("Error!");
+        }
+    }
+
     render() {
         return (
             <Container>

@@ -55,12 +55,7 @@ class AnimalAdd extends Component {
         e.preventDefault();
        
         if (e.currentTarget.checkValidity() === false) {   
-          e.stopPropagation();
-
-        //   if(form.gender.value == "Choose...") {
-        //     form.gender.value="";
-        //   }
-        
+          e.stopPropagation();        
         } 
         else {
             const parrentScope = this;

@@ -1,6 +1,7 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 
 import AnimalFormView from "../Animals/AnimalFormView";
+import AlertNotification from "../General/AlertNotification";
 
 import endpoints from "../../services/endpoints.js";
 import { postAuthData, getData } from "../../services/services.js";
@@ -16,8 +17,20 @@ class AnimalEdit extends Component {
             species: '',
             description: '',
             profileImg: '',
+            alertShow: false,
+            alertText: '',
+            alertTitle: '',
+            alertClass: '',
             isValid: false
         }
+    }
+
+    alertDetails = (shouldShow, message, classAlert) => {  
+        this.setState({
+            alertShow: shouldShow,
+            alertText: message,            
+            alertClass: classAlert
+        });
     }
 
     componentDidMount() {  
@@ -32,7 +45,7 @@ class AnimalEdit extends Component {
 
     onEditSubmitHandler(e) {
         e.preventDefault();
-        //const parrentScope = this;   
+        const parrentScope = this;   
         
         if (e.currentTarget.checkValidity() === false) {   
             e.stopPropagation();        
@@ -51,14 +64,18 @@ class AnimalEdit extends Component {
             }  
             
             postAuthData(endpoints.animals + "/" + this.props.match.params.animalId, animal, function (data){               
-                //parrentScope.successAlert();
+                parrentScope.alertDetails(true, "Успешно редактирахте животно!", "success");
+               
                 setTimeout(() => {
-                    
                     history.push("/animals");
                   }, 3000);
                
             }, function (error){   
-                //parrentScope.errorAlert();
+                parrentScope.alertDetails(true, "Грешка от страна на сървъра при редактиране на животното. Моля опитайте по-късно.", "danger");
+
+                setTimeout(() => {
+                    parrentScope.alertDetails(false, "", "");
+                  }, 3000);
             }, 'PUT')    
         } 
 
@@ -68,21 +85,28 @@ class AnimalEdit extends Component {
     };
 
     render() {
-        return <AnimalFormView
-            onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
-            buttonTitle="Запази"
-            validated={this.state.isValid}
-            animalName={this.state.name}
-            setAnimalName={(name) => this.setState({name})}
-            animalGender={this.state.gender}
-            setAnimalGender={(gender) => this.setState({gender})}
-            animalStatus={this.state.currentStatus}
-            setAnimalStatus={(currentStatus) => this.setState({currentStatus})}
-            animalSpecies={this.state.species}
-            setAnimalSpecies={(species) => this.setState({species})}
-            animalDescription={this.state.description}
-            setAnimalDescription={(description) => this.setState({description})}
-        />
+        return <Fragment>
+            {
+                this.state.alertShow
+                ? (<AlertNotification text={this.state.alertText} heading={this.state.alertTitle} variant={this.state.alertClass} show={this.state.alertShow} />)
+                : null       
+            }
+            <AnimalFormView
+                onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
+                buttonTitle="Запази"
+                validated={this.state.isValid}
+                animalName={this.state.name}
+                setAnimalName={(name) => this.setState({name})}
+                animalGender={this.state.gender}
+                setAnimalGender={(gender) => this.setState({gender})}
+                animalStatus={this.state.currentStatus}
+                setAnimalStatus={(currentStatus) => this.setState({currentStatus})}
+                animalSpecies={this.state.species}
+                setAnimalSpecies={(species) => this.setState({species})}
+                animalDescription={this.state.description}
+                setAnimalDescription={(description) => this.setState({description})}
+            />
+        </Fragment>            
     };
 };
 

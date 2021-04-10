@@ -24,16 +24,7 @@ class AnimalAdd extends Component {
             alertClass: '',
             isValid: false
         }
-    }   
-    
-    hideAlert = () => {  
-        this.setState({
-            alertShow: false,
-            alertText: "",
-            alertTitle: "",
-            alertClass: ""
-        });
-    }
+    }     
 
     alertDetails = (shouldShow, message, classAlert) => {  
         this.setState({
@@ -73,7 +64,7 @@ class AnimalAdd extends Component {
                 parrentScope.alertDetails(true, "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно.", "danger");
 
                 setTimeout(() => {
-                    parrentScope.alertDetails(false, "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно.", "danger");
+                    parrentScope.alertDetails(false, "", "danger");
                   }, 3000);
             })  
         }    

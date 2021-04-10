@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { withCookies } from "react-cookie";
 
 import endpoints from "../../../services/endpoints.js";

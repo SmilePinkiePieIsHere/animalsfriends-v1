@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import ErrorBoundary from "./components/General/ErrorBoundary";
+import ThemeContext from "./components/General/ThemeContext";
 import Header from "./components/General/Header";
 import Footer from "./components/General/Footer";
 import ForUs from './components/ForUs';
@@ -15,12 +16,6 @@ import AnimalEdit from "./components/Animals/AnimalEdit";
 import './App.scss';
 
 function App() {
-    const [update, setUpdate] = useState(false);
-
-    const onUpdate = () => {
-        setUpdate(!update);
-    }
-
     return (
         <main className="wrapper-main">
             <ErrorBoundary>
@@ -32,7 +27,7 @@ function App() {
                     <Route path="/for-us" component={ForUs} />
                     <Route path="/animals" exact component={Animals} />
                     <Route path="/animals?status=:status" component={Animals} />
-                    <Route path="/animals/details/:animalId" render={(props) => <AnimalDetails updateAnimals={onUpdate} {...props} />} />
+                    <Route path="/animals/details/:animalId" component={AnimalDetails} />
                     <Route path="/animals/:animalId/edit" component={AnimalEdit} />
                     <Route path="/animals/add" component={AnimalAdd} />
                 </Switch>

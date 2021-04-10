@@ -19,19 +19,11 @@ function Register({
         }
     );
 
-    const successAlert = () => {  
+    const alertDetails = (shouldShow, message, classAlert) => {  
         setState({
-            alertShow: true,
-            alertText: "Успешно се регистрирахте!",            
-            alertClass: 'success'
-        });
-    }
-
-    const errorAlert = (errorMsg) => {  
-        setState({
-            alertShow: true,
-            alertText: errorMsg,            
-            alertClass: 'danger'
+            alertShow: shouldShow,
+            alertText: message,            
+            alertClass: classAlert
         });
     }
 
@@ -53,7 +45,7 @@ function Register({
                     setCookie('refresh_token', data.refresh_token);
                     setCookie('username', userTemp.username);
     
-                    successAlert();
+                    alertDetails(true, "Успешно се регистрирахте!", "success");
                     setTimeout(() => {
                         history.goBack();
                     }, 3000);
@@ -63,11 +55,11 @@ function Register({
                 }               
 
             }, function (error) {
-                errorAlert("Грешка от страна на сървъра при регистрация!");
+                alertDetails(true, "Грешка от страна на сървъра при регистрация!", "danger");
             })
         }
         else {
-            errorAlert("Паролите не съвпадат!");
+            alertDetails(true, "Паролите не съвпадат!", "danger");
         }
     }
 

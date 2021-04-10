@@ -53,7 +53,7 @@ export async function postAuthData(url = '', data = {}, onSuccess, onFailure, me
     baseFetch(url, data, onSuccess, onFailure, methodRequest, 'Сървърна грешка при обновяване на данни!', true, true);
 }
 
-export async function deleteAuthData(url = '', onSuccess, onFailure) {  
+export async function deleteAuthData(url = '', onSuccess, onFailure) {
     baseFetch(url, {}, onSuccess, onFailure, 'DELETE', 'Сървърна грешка при изтриване!', false, true);
 }
 

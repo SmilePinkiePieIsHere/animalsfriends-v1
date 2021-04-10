@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
+import ThemeContext from "../General/ThemeContext";
 import AnimalCard from "./AnimalCard";
 import AnimalsFilters from '../Animals/AnimalsFilters';
 
@@ -15,7 +16,8 @@ class Animals extends Component {
 
         this.state = {
             animals: [],
-            currentStatus: ''           
+            currentStatus: '',
+            shouldUpdate: this.context          
         }
     }
 
@@ -25,7 +27,9 @@ class Animals extends Component {
         }, "Грешка от страна на сървъра при вземане на животните!")
         .then(res => {
             this.setState({ animals: res })
-        });        
+        });   
+        
+        console.log(this.context);
     }
 
     componentDidUpdate(prevProps) {  
@@ -59,5 +63,7 @@ class Animals extends Component {
             );
     };
 }
+
+Animals.contextType = ThemeContext;
 
 export default Animals;

@@ -4,7 +4,8 @@ import { Container, Row } from "react-bootstrap";
 import AnimalCard from "./AnimalCard";
 import AnimalsFilters from '../Animals/AnimalsFilters';
 
-import * as animalsService from "../../services/animalsService";
+import endpoints from "../../services/endpoints.js";
+import { getData } from "../../services/services";
 
 import "./Animals.scss";
 
@@ -19,25 +20,28 @@ class Animals extends Component {
     }
 
     componentDidMount() {
-        animalsService.default
-            .getAll()
-            .then(res => {
-                this.setState({ animals: res })
-            });        
+        getData(endpoints.animals, function (error) {
+            alert(error);
+        }, "Грешка от страна на сървъра при вземане на животните!")
+        .then(res => {
+            this.setState({ animals: res })
+        });        
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {        
         const status = this.props.location.search; //this.props.match.params.status;
 
         if (prevProps.location.search === status) { //prevProps.match.params.status == status
             return;
         }
 
-        animalsService.default
-            .getAll(status)
-            .then(res => {
-                this.setState({ animals: res, currentStatus: status })
-            })
+        let animalsURL = endpoints.animals + ((status) ? `${status}` : '');
+        getData(animalsURL, function (error) {
+            alert(error);
+        }, "Грешка от страна на сървъра при вземане на животните!")
+        .then(res => {
+            this.setState({ animals: res, currentStatus: status })
+        });    
     }
 
     render() {

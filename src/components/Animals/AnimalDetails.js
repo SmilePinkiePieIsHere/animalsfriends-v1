@@ -5,9 +5,8 @@ import { useCookies } from 'react-cookie';
 import ModalNotification from "../General/ModalNotification";
 import AlertNotification from "../General/AlertNotification";
 
-import * as animalsService from "../../services/animalsService";
 import endpoints from "../../services/endpoints.js";
-import { deleteAuthData } from "../../services/services.js";
+import { deleteAuthData, getData } from "../../services/services.js";
 import { genderAnimal, statusAnimal } from '../General/Helpers/enum.js';
 
 import "./AnimalDetails.scss";
@@ -25,8 +24,11 @@ function AnimalDetails({
     let isLoggedIn = !(typeof (cookies.username) === "undefined" || cookies.username === "undefined");
 
     useEffect(() => {
-        animalsService.default.getAnimal(match.params.animalId)
-            .then(res => setAnimal(res));
+        let animalUrl =`${endpoints.animals}/${match.params.animalId}`;
+        getData(animalUrl, function (error) {
+            alert(error);
+        }, "Грешка от страна на сървъра при вземане на животнo!")
+        .then(res => setAnimal(res));           
     }, []);
 
     const popUpDelete = (e) => {  

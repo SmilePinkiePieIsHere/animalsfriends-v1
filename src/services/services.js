@@ -36,6 +36,15 @@ async function baseFetch(urlRequest, data = {}, onSuccess, onFailure, methodRequ
     });
 }
 
+export async function getData(url, onFailure, failureMsg) {
+    return fetch(url)
+        .then(res => res.json())
+        .catch(error => {
+            console.log(error);
+            onFailure(failureMsg);            
+        });
+}
+
 export async function postData(url = '', data = {}, onSuccess, onFailure) {
     baseFetch(url, data, onSuccess, onFailure, 'POST', 'Сървърна грешка при оторизацията!');    
 }

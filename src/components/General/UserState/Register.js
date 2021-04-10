@@ -30,7 +30,7 @@ function Register({
                     const expires_in = new Date(new Date().getTime() + (data.expires_in * 1000));
                     setCookie('access_token', data.access_token, { expires: expires_in });
                     setCookie('refresh_token', data.refresh_token);
-                    setCookie('username', user.username);
+                    setCookie('username', userTemp.username);
     
                     history.goBack();
 

@@ -47,8 +47,8 @@ class Animals extends Component {
     render() {
         return (
             <div className="wrap-animals">
-                <Container>                
-                    <Row><AnimalsFilters /></Row>
+                <Container>   
+                    <AnimalsFilters />
                     <Row>
                         {this.state.animals?.map(x =>
                             <AnimalCard key={x.id} {...x} />

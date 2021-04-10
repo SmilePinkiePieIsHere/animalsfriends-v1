@@ -2,7 +2,31 @@ import getAccessToken from "./auth.js";
 
 const accessToken = getAccessToken();
 
-export async function postData(url = '', data = {}, onSuccess) {
+// async function baseFetch(url, method, headers) {
+//     return await fetch(url, {
+//         method: 'POST',
+//         mode: 'cors', // no-cors, *cors, same-origin
+//         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//         credentials: 'same-origin', // include, *same-origin, omit
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Accept': 'application/json'          
+//         },  
+//         redirect: 'follow', // manual, *follow, error
+//         referrerPolicy: 'no-referrer', // no-referrer, *client      
+//         body: JSON.stringify(data)
+//     })
+//     .then(res => res.json())
+//     .then((data) => {       
+//         onSuccess(data);
+//     })
+//     .catch(error => {  
+//         console.log(error); 
+//         onFailure('Сървърна грешка при оторизацията!');
+//     });
+// }
+
+export async function postData(url = '', data = {}, onSuccess, onFailure) {
     await fetch(url, {
         method: 'POST',
         mode: 'cors', // no-cors, *cors, same-origin
@@ -20,9 +44,9 @@ export async function postData(url = '', data = {}, onSuccess) {
     .then((data) => {       
         onSuccess(data);
     })
-    .catch(error => {        
-        alert('Грешка при оторизацията!');       
-        console.log(error)
+    .catch(error => {  
+        console.log(error); 
+        onFailure('Сървърна грешка при оторизацията!');
     });
 }
 
@@ -47,11 +71,11 @@ export async function postAuthData(url = '', data = {}, onSuccess, onFailure, me
     })
     .catch(error => {       
         console.log(error); 
-        onFailure(error);
+        onFailure('Сървърна грешка при обновяване на данни!');
     });
 }
 
-export async function deleteAuthData(url = '', onSuccess) {  
+export async function deleteAuthData(url = '', onSuccess, onFailure) {  
     await fetch(url, {
         method: 'DELETE',        
         headers: {
@@ -66,6 +90,7 @@ export async function deleteAuthData(url = '', onSuccess) {
     })
     .catch(error => {  
         console.log(error);
+        onFailure('Сървърна грешка при изтриване!');
     });
 }
 

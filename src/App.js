@@ -6,7 +6,7 @@ import Header from "./components/General/Header";
 import Footer from "./components/General/Footer";
 import ForUs from './components/ForUs';
 import Login from "./components/General/UserState/Login";
-import Login from "./components/General/UserState/Register";
+import Register from "./components/General/UserState/Register";
 import Animals from "./components/Animals/Animals";
 import AnimalDetails from "./components/Animals/AnimalDetails";
 import AnimalAdd from "./components/Animals/AnimalAdd";

@@ -3,8 +3,7 @@ import { Component } from 'react';
 import AnimalFormView from "../Animals/AnimalFormView";
 
 import endpoints from "../../services/endpoints.js";
-import { postAuthData } from "../../services/services.js";
-import * as animalsService from "../../services/animalsService";
+import { postAuthData, getData } from "../../services/services.js";
 
 class AnimalEdit extends Component {
     constructor(props) {
@@ -22,10 +21,13 @@ class AnimalEdit extends Component {
     }
 
     componentDidMount() {  
-        animalsService.default.getAnimal(this.props.match.params.animalId)
-            .then(animal => {
-                this.setState(animal);
-            });
+        let animalUrl =`${endpoints.animals}/${this.props.match.params.animalId}`;
+        getData(animalUrl, function (error) {
+            alert(error);
+        }, "Грешка от страна на сървъра при вземане на животнo!")
+        .then(animal => {
+            this.setState(animal);
+        });
     }
 
     onEditSubmitHandler(e) {
@@ -33,12 +35,7 @@ class AnimalEdit extends Component {
         //const parrentScope = this;   
         
         if (e.currentTarget.checkValidity() === false) {   
-            e.stopPropagation();
-  
-          //   if(form.gender.value == "Choose...") {
-          //     form.gender.value="";
-          //   }
-          
+            e.stopPropagation();        
         } 
         else {
             let { history, match } = this.props;

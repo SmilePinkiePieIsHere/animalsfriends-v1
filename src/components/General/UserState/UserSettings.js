@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
@@ -28,7 +28,10 @@ function UserSettings(props) {
     return (
         <Nav className="user-settings" >            
             {!state.isLogedIn ? (
-                <Link to="/login" className="nav-item">Вход</Link>
+                <Fragment>
+                    <Link to="/login" className="nav-item">Вход</Link>
+                    <Link to="/register" className="nav-item">Регистрация</Link>
+                </Fragment>
             ) : (
                 <NavDropdown title={cookies.username} id="nav-dropdown" className="nav-item" >
                     <Link className="dropdown-item" to="/animals/add">Добави Животно</Link>

@@ -5,6 +5,7 @@ var endpoints = {
     animals: `${baseUrl}/animals`,
     users: `${baseUrl}/user`,
     userLogin: `${baseUrl}/user/login`,
+    userRegister: `${baseUrl}/user/register`,
     userRefresh: `${baseUrl}/user/refresh_token`
 }
 export default endpoints;

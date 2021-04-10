@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { withCookies } from "react-cookie";
 
 import endpoints from "../../../services/endpoints.js";
@@ -57,7 +57,7 @@ class Login extends Component {
                     <Col></Col>
                     <Col xs={6}>
                         <Form className="form-view" noValidate validated={this.state.isValid} onSubmit={this.onSubmitHandler.bind(this)}>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group>
                                 <Form.Label>Потребителско име:</Form.Label>
                                 <Form.Control required type="text" name="username" placeholder="Име" />
                                 <Form.Control.Feedback type="invalid">Моля, въведете потребителско име.</Form.Control.Feedback>

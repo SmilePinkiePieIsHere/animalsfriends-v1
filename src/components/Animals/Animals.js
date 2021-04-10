@@ -1,10 +1,12 @@
 import { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
+import ThemeContext from "../General/ThemeContext";
 import AnimalCard from "./AnimalCard";
 import AnimalsFilters from '../Animals/AnimalsFilters';
 
-import * as animalsService from "../../services/animalsService";
+import endpoints from "../../services/endpoints.js";
+import { getData } from "../../services/services";
 
 import "./Animals.scss";
 
@@ -14,41 +16,43 @@ class Animals extends Component {
 
         this.state = {
             animals: [],
-            currentStatus: ''           
+            currentStatus: '',
+            shouldUpdate: this.context          
         }
     }
 
     componentDidMount() {
-        animalsService.default
-            .getAll()
-            .then(res => {
-                this.setState({ animals: res })
-            });
-
-        if (Math.random() > 0.9) {
-            throw new Error("Error!");
-        }
+        getData(endpoints.animals, function (error) {
+            alert(error);
+        }, "Грешка от страна на сървъра при вземане на животните!")
+        .then(res => {
+            this.setState({ animals: res })
+        });   
+        
+        console.log(this.context);
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {  
         const status = this.props.location.search; //this.props.match.params.status;
 
         if (prevProps.location.search === status) { //prevProps.match.params.status == status
             return;
         }
 
-        animalsService.default
-            .getAll(status)
-            .then(res => {
-                this.setState({ animals: res, currentStatus: status })
-            })
+        let animalsURL = endpoints.animals + ((status) ? `${status}` : '');
+        getData(animalsURL, function (error) {
+            alert(error);
+        }, "Грешка от страна на сървъра при вземане на животните!")
+        .then(res => {
+            this.setState({ animals: res, currentStatus: status })
+        });    
     }
 
     render() {
         return (
             <div className="wrap-animals">
-                <Container>                
-                    <Row><AnimalsFilters /></Row>
+                <Container>   
+                    <AnimalsFilters />
                     <Row>
                         {this.state.animals?.map(x =>
                             <AnimalCard key={x.id} {...x} />
@@ -59,5 +63,7 @@ class Animals extends Component {
             );
     };
 }
+
+Animals.contextType = ThemeContext;
 
 export default Animals;

@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie';
 import endpoints from "./endpoints.js";
 import { postData } from "./services.js";
 
-function getAccessToken() {  
+async function getAccessToken() {  
     const cookies = new Cookies();
     const accessToken = cookies.get('access_token');
     const refreshToken = cookies.get('refresh_token');

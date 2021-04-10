@@ -54,20 +54,17 @@ function AnimalFormView({
                         <Form.Group>
                             <Form.Control type="select" name="gender" onChange={(e) => setAnimalGender(e.target.value)} as="select" value={animalGender}  >   
                                 {bindDropDown(genderOptions)}                                   
-                            </Form.Control>        
-                            {/* <Form.Control.Feedback type="invalid">Моля, изберете пол.</Form.Control.Feedback>   */}
+                            </Form.Control>   
                         </Form.Group>
                         <Form.Group>
                             <Form.Control type="select" name="status" onChange={(e) => setAnimalStatus(e.target.value)} as="select" value={animalStatus}>   
                                 {bindDropDown(statusOptions)}                               
-                            </Form.Control>        
-                            {/* <Form.Control.Feedback type="invalid">Моля, изберете състояние.</Form.Control.Feedback>*/}
+                            </Form.Control>    
                         </Form.Group>
                         <Form.Group>
                             <Form.Control type="select"  name="species" onChange={(e) => setAnimalSpecies(e.target.value)} as="select" value={animalSpecies}>
                                 {bindDropDown(speciesOptions)}                          
                             </Form.Control>     
-                            {/* <Form.Control.Feedback type="invalid">Моля, изберете вид.</Form.Control.Feedback>*/}
                         </Form.Group>
                         <Form.Group>
                             <Form.Control required type="textarea" as="textarea" rows={3} name="description" onChange={(e) => setAnimalDescription(e.target.value)} value={animalDescription} placeholder="Описание" />

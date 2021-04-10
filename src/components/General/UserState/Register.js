@@ -17,9 +17,9 @@ function Register({
             alertText: '',            
             alertClass: ''
         }
-    );
+    );    
 
-    const alertDetails = (shouldShow, message, classAlert) => {  
+    const alertDetails = (shouldShow, message, classAlert) => { 
         setState({
             alertShow: shouldShow,
             alertText: message,            
@@ -56,10 +56,18 @@ function Register({
 
             }, function (error) {
                 alertDetails(true, "Грешка от страна на сървъра при регистрация!", "danger");
+
+                setTimeout(() => {
+                    alertDetails(false, "Паролите не съвпадат!", "danger");
+                }, 3000);
             })
         }
         else {
             alertDetails(true, "Паролите не съвпадат!", "danger");
+
+            setTimeout(() => {
+                alertDetails(false, "Паролите не съвпадат!", "danger");
+            }, 3000);
         }
     }
 

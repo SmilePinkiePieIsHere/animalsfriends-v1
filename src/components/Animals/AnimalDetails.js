@@ -52,9 +52,12 @@ function AnimalDetails({
         setPopUp(false);
     }
 
-    const hideAlert = (e) => {
-        setAlertModal(false);
-        history.goBack();
+    const alertDetails = (shouldShow, message, classAlert) => { 
+        setAlertModal({
+            alertShow: shouldShow,
+            alertText: message,            
+            alertClass: classAlert
+        });
     }
 
     const deleteAnimal = (e) => {
@@ -64,29 +67,18 @@ function AnimalDetails({
             if (!data.error_description) {
                 setShouldUpdate(true);
 
-                setAlertModal({
-                    alertShow: true,
-                    alertText: "Успешно изтрито животно.",            
-                    alertClass: 'success'
-                });
-
+                alertDetails(true, "Успешно изтрито животно.", "success");
                 setTimeout(() => {
                     history.push("/animals");
                 }, 2000);
             }
             else {
-                setAlertModal({
-                    alertShow: true,
-                    alertText: "Грешка от страна на сървъра при изтриване на животното. Моля опитайте по-късно.",            
-                    alertClass: 'danger'
-                });
+                alertDetails(true, "Грешка от страна на сървъра при изтриване на животното. Моля опитайте по-късно.", "danger");
+                history.goBack();
             }
         }, function (error){  
-            setAlertModal({
-                alertShow: true,
-                alertText: "Грешка от страна на сървъра при изтриване на животното. Моля опитайте по-късно.",            
-                alertClass: 'danger'
-            });
+            alertDetails(true, "Грешка от страна на сървъра при изтриване на животното. Моля опитайте по-късно.", "danger");
+            history.goBack();
         });
     }
 
@@ -116,7 +108,7 @@ function AnimalDetails({
                     </Card>
                 </Col>
                 <ModalNotification text="Сигурен ли сте, че искате да премахнете това животно?" variant="warning" show={popUp} onSuccess={deleteAnimal} onCancel={hidePopUp} />
-                <AlertNotification text={alertModal.alertText} heading={alertModal.alertTitle} variant={alertModal.alertClass} show={alertModal.alertShow} onClose={hideAlert} />
+                <AlertNotification text={alertModal.alertText} heading={alertModal.alertTitle} variant={alertModal.alertClass} show={alertModal.alertShow} />
             </Fragment>
         </ThemeContext.Provider>
     );

@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useState, useEffect } from "react";
 
 import ErrorBoundary from "./components/General/ErrorBoundary";
 import AuthContext from "./components/General/AuthContext";
@@ -18,13 +19,17 @@ import isAuth from './hocs/isAuth';
 import './App.scss';
 
 function App() {
-    const [cookies] = useCookies(['username']);
-    const authInfo = {
-        isAuthenticated: cookies.username != undefined
-    };
+    const [cookies] = useCookies();
+    const [authInfo, setAuthInfo] = useState({
+        isAuthenticated: false
+    });
 
-    console.log(cookies.username);
-
+    useEffect(() => {
+        setAuthInfo(oldAuthInfo => ({
+            isAuthenticated: cookies.username !== undefined
+        }));
+    }, [cookies]);
+    
     return (
         <AuthContext.Provider value={authInfo}>
             <main className="wrapper-main">

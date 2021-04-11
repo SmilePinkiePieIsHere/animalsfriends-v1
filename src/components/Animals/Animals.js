@@ -27,9 +27,7 @@ class Animals extends Component {
         }, "Грешка от страна на сървъра при вземане на животните!")
         .then(res => {
             this.setState({ animals: res })
-        });   
-        
-        console.log(this.context);
+        });  
     }
 
     componentDidUpdate(prevProps) {  

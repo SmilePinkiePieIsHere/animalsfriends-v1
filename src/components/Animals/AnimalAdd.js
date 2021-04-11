@@ -24,30 +24,13 @@ class AnimalAdd extends Component {
             alertClass: '',
             isValid: false
         }
-    }   
-    
-    hideAlert = () => {  
-        this.setState({
-            alertShow: false,
-            alertText: "",
-            alertTitle: "",
-            alertClass: ""
-        });
-    }
+    }     
 
-    successAlert = () => {  
+    alertDetails = (shouldShow, message, classAlert) => {  
         this.setState({
-            alertShow: true,
-            alertText: "Успешно добавихте животно!",            
-            alertClass: 'success'
-        });
-    }
-
-    errorAlert = () => {  
-        this.setState({
-            alertShow: true,
-            alertText: "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно.",            
-            alertClass: 'danger'
+            alertShow: shouldShow,
+            alertText: message,            
+            alertClass: classAlert
         });
     }
 
@@ -70,15 +53,19 @@ class AnimalAdd extends Component {
                 profileImg: ''
             }      
             
-            postAuthData(endpoints.animals, animal, function (data){               
-                parrentScope.successAlert();
+            postAuthData(endpoints.animals, animal, function (data){ 
+                parrentScope.alertDetails(true, "Успешно добавихте животно!", "success");
     
                 setTimeout(() => {
                     history.push("/animals");
                   }, 3000);
                
-            }, function (error){   
-                parrentScope.errorAlert();
+            }, function (error){
+                parrentScope.alertDetails(true, "Грешка от страна на сървъра при добавяне на животното. Моля опитайте по-късно.", "danger");
+
+                setTimeout(() => {
+                    parrentScope.alertDetails(false, "", "danger");
+                  }, 3000);
             })  
         }    
         
@@ -92,7 +79,7 @@ class AnimalAdd extends Component {
             <Fragment>
                 {
                     this.state.alertShow
-                    ? (<AlertNotification text={this.state.alertText} heading={this.state.alertTitle} variant={this.state.alertClass} show={this.state.alertShow} onClose={this.hideAlert.bind(this)} />)
+                    ? (<AlertNotification text={this.state.alertText} heading={this.state.alertTitle} variant={this.state.alertClass} show={this.state.alertShow} />)
                     : null       
                 }
                 <AnimalFormView

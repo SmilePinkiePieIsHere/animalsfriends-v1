@@ -10,13 +10,10 @@ function AlertNotification({
     show,
     onClose
 }) {
-    const onSubmitHandler = () => {
-      onClose();
-    }
   
     return (
       <Fragment>
-        <Alert className="wrap-alert" show={show} variant={variant} onClose={onSubmitHandler} dismissible>
+        <Alert className="wrap-alert" show={show} variant={variant}>
           <Alert.Heading>{heading}</Alert.Heading>
           <p>{text}</p>   
         </Alert>        

@@ -10,6 +10,10 @@ body {
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
             background: rgb(209, 255, 123);
+
+            &.was-validated .form-control:valid, .form-control.is-valid {   
+                background-position: right calc(0.375em + 0.5rem) center;               
+            }
         }
 
         .btn {

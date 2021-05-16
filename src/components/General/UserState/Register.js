@@ -38,11 +38,11 @@ function Register({
             let form = e.target;
             let userTemp = {
                 username: form.username.value,
-                password: form.password.value,
-                password2: form.passwordConfirmation.value
+                passwordhash: form.password.value,
+                passwordhash2: form.passwordConfirmation.value
             }
 
-            if (userTemp.password === userTemp.password2) {
+            if (userTemp.passwordhash === userTemp.passwordhash2) {
                 postData(endpoints.userRegister, userTemp, function (data) {
                     if (!data.error_description) {
                         const expires_in = new Date(new Date().getTime() + (data.expires_in * 1000));

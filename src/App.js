@@ -13,6 +13,7 @@ import Animals from "./components/Animals/Animals";
 import AnimalDetails from "./components/Animals/AnimalDetails";
 import AnimalAdd from "./components/Animals/AnimalAdd";
 import AnimalEdit from "./components/Animals/AnimalEdit";
+import Posts from "./components/Posts/Posts";
 
 import isAuth from './hocs/isAuth';
 
@@ -45,6 +46,7 @@ function App() {
                         <Route path="/animals/details/:animalId" component={AnimalDetails} />
                         <Route path="/animals/:animalId/edit" component={isAuth(AnimalEdit)} />
                         <Route path="/animals/add" component={isAuth(AnimalAdd)} />
+                        <Route path="/blog" component={Posts} />
                     </Switch>
                     <Footer />
                 </ErrorBoundary>

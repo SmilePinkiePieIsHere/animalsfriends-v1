@@ -8,7 +8,8 @@ import "./Header.scss";
 
 let mainMenuItems = [
     { id: 1, title: 'За нас', link: '/for-us' },
-    { id: 2, title: 'Животните', link: '/animals' }    
+    { id: 2, title: 'Животните', link: '/animals' },
+    { id: 3, title: 'Блог', link: '/blog' }    
 ];
 
 function Header() {    

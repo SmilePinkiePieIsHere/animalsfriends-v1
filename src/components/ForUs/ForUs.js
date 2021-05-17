@@ -15,7 +15,7 @@ class ForUs extends Component {
                             <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
                                 <Tab eventKey="home" title="Нашата цел">
                                     <h2>Да помогнем на животните в беда!</h2>
-                                    <p>Oрганизация в помощ на животните в беда.</p>
+                                    <p>Oрганизация в помощ на животните в беда.</p>                                    
                                 </Tab>
                                 <Tab eventKey="profile" title="Карта" className="wrap-map" >
                                     <GoogleApiWrapper/>

@@ -1,4 +1,5 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import Uploader from "../General/Uploader";
 
 function AnimalFormView({
     onSubmitHandler,
@@ -70,6 +71,7 @@ function AnimalFormView({
                             <Form.Control required type="textarea" as="textarea" rows={3} name="description" onChange={(e) => setAnimalDescription(e.target.value)} value={animalDescription} placeholder="Описание" />
                             <Form.Control.Feedback type="invalid">Моля, въведете кратко описание.</Form.Control.Feedback>
                         </Form.Group>
+                        <Uploader/>
                         <Button variant="primary" type="submit">{buttonTitle}</Button>
                     </Form>
                 </Col>

@@ -54,7 +54,7 @@ class AnimalEdit extends Component {
             let { history, match } = this.props;
 
             let animal = {
-                id: Number(match.params.animalId),
+                id: match.params.animalId,
                 name: this.state.name,
                 gender: this.state.gender,
                 currentStatus: this.state.currentStatus,

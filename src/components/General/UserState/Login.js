@@ -26,7 +26,7 @@ class Login extends Component {
             const { cookies, history } = this.props;
             let user = {
                 username: e.target.username.value,
-                password: e.target.password.value
+                passwordhash: e.target.password.value
             }      
             
             postData(endpoints.userLogin, user, function (data){            

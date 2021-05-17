@@ -24,13 +24,10 @@ class Uploader extends React.Component {
         this.setState({
             pictures: this.state.pictures.concat(picture),
         });
-        debugger
         var result;
         if (picture[0] instanceof Blob) {
              result = this.getBase64(picture[0]);
-          } 
-        console.log(result);
-        debugger
+        } 
     }
  
     render() {

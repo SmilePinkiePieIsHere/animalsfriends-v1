@@ -2,6 +2,7 @@ import { Component, Fragment } from 'react';
 
 import AnimalFormView from "../Animals/AnimalFormView";
 import AlertNotification from "../General/AlertNotification";
+import ThemeContext from "../General/ThemeContext";
 
 import endpoints from "../../services/endpoints.js";
 import { postAuthData, getData } from "../../services/services.js";
@@ -45,7 +46,7 @@ class AnimalEdit extends Component {
 
     onEditSubmitHandler(e) {
         e.preventDefault();
-        const parrentScope = this;   
+        const parrentScope = this; 
         
         if (e.currentTarget.checkValidity() === false) {   
             e.stopPropagation();        
@@ -60,7 +61,7 @@ class AnimalEdit extends Component {
                 currentStatus: this.state.currentStatus,
                 species: this.state.species,
                 description: this.state.description,
-                profileImg: this.state.profileImg
+                profileImg: parrentScope.context
             }  
             
             postAuthData(endpoints.animals + "/" + this.props.match.params.animalId, animal, function (data){               
@@ -90,24 +91,26 @@ class AnimalEdit extends Component {
                 this.state.alertShow
                 ? (<AlertNotification text={this.state.alertText} heading={this.state.alertTitle} variant={this.state.alertClass} show={this.state.alertShow} />)
                 : null       
-            }
-            <AnimalFormView
-                onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
-                buttonTitle="Запази"
-                validated={this.state.isValid}
-                animalName={this.state.name}
-                setAnimalName={(name) => this.setState({name})}
-                animalGender={this.state.gender}
-                setAnimalGender={(gender) => this.setState({gender})}
-                animalStatus={this.state.currentStatus}
-                setAnimalStatus={(currentStatus) => this.setState({currentStatus})}
-                animalSpecies={this.state.species}
-                setAnimalSpecies={(species) => this.setState({species})}
-                animalDescription={this.state.description}
-                setAnimalDescription={(description) => this.setState({description})}
-            />
+            }            
+                <AnimalFormView
+                    onSubmitHandler={this.onEditSubmitHandler.bind(this)}           
+                    buttonTitle="Запази"
+                    validated={this.state.isValid}
+                    animalName={this.state.name}
+                    setAnimalName={(name) => this.setState({name})}
+                    animalGender={this.state.gender}
+                    setAnimalGender={(gender) => this.setState({gender})}
+                    animalStatus={this.state.currentStatus}
+                    setAnimalStatus={(currentStatus) => this.setState({currentStatus})}
+                    animalSpecies={this.state.species}
+                    setAnimalSpecies={(species) => this.setState({species})}
+                    animalDescription={this.state.description}
+                    setAnimalDescription={(description) => this.setState({description})}
+                />           
         </Fragment>            
     };
 };
+
+AnimalEdit.contextType = ThemeContext;
 
 export default AnimalEdit;

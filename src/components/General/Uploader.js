@@ -1,35 +1,34 @@
 import React from 'react';
 import ImageUploader from 'react-images-upload';
- 
+
+import AnimalContext from "./AnimalContext";
+
 class Uploader extends React.Component {
- 
+
     constructor(props) {
-        super(props);
-         this.state = { pictures: [] };
-         this.onDrop = this.onDrop.bind(this);
+        super(props);       
+        this.onDrop = this.onDrop.bind(this);
     }
 
-    getBase64 = (file) => {  
+    getBase64 = (file) => {
+        let thisContext = this.context;
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            console.log(reader.result);
+            thisContext.image = reader.result;
+            thisContext.uploading(reader.result);
         };
         reader.onerror = function (error) {
             console.log('Error: ', error);
         };
     }
- 
-    onDrop(picture) {       
-        this.setState({
-            pictures: this.state.pictures.concat(picture),
-        });
-        var result;
+
+    onDrop(picture) {  
         if (picture[0] instanceof Blob) {
-             result = this.getBase64(picture[0]);
-        } 
+            this.getBase64(picture[0]);
+        }
     }
- 
+
     render() {
         return (
             <ImageUploader
@@ -43,5 +42,7 @@ class Uploader extends React.Component {
         );
     }
 }
+
+Uploader.contextType = AnimalContext;
 
 export default Uploader;

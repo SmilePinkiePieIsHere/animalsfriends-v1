@@ -35,6 +35,7 @@ function UserSettings(props) {
             ) : (
                 <NavDropdown title={cookies.username} id="nav-dropdown" className="nav-item" >
                     <Link className="dropdown-item" to="/animals/add">Добави Животно</Link>
+                    <Link className="dropdown-item" to="/blog/add">Добави Публикация</Link>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={logOut} >Изход</NavDropdown.Item>
                 </NavDropdown>

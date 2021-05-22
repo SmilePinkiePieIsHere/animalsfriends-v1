@@ -1,17 +1,34 @@
-import { Card, Col, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Container, Row } from "react-bootstrap";
 
-//import "./Posts.scss";
+import PostCard from "./PostCard";
+
+import endpoints from "../../services/endpoints.js";
+import { getData } from "../../services/services";
+
 
 function Posts() {
+    const [posts, setPosts] = useState();
+
+    useEffect(() => {
+        getData(endpoints.posts, function (error) {
+            alert(error);
+        }, "Грешка от страна на сървъра при вземане на животните!")
+            .then(res => {
+                setPosts(res)
+            });
+    }, []);
 
     return (
-        <Col>
-            <Card className="animal-card">
-                <Card.Body>
-                    test
-                </Card.Body>
-            </Card>
-        </Col>
+        <div className="wrap-tasks">
+            <Container>                
+                <Row>
+                    {posts?.map(x =>
+                         <PostCard key={x.id} {...x} />
+                    )}
+                </Row>
+            </Container>
+        </div>
     )
 }
 

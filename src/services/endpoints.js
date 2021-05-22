@@ -3,6 +3,7 @@ const baseUrl = "https://localhost:44337"; //"https://localhost:44337"; 44358
 var endpoints = {
     baseUrl: `${baseUrl}`,
     animals: `${baseUrl}/animals`,
+    posts: `${baseUrl}/posts`,
     users: `${baseUrl}/user`,
     userLogin: `${baseUrl}/user/login`,
     userRegister: `${baseUrl}/user/register`,

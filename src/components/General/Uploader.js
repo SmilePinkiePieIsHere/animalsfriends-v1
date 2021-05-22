@@ -33,11 +33,12 @@ class Uploader extends React.Component {
         return (
             <ImageUploader
                 withIcon={true}
-                buttonText='Choose images'
+                buttonText='Качи аватар'
                 onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                imgExtension={['.jpg', '.png']}
                 maxFileSize={5242880}
                 withPreview={true}
+                singleImage={true}
             />
         );
     }

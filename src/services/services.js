@@ -1,6 +1,7 @@
 import getAccessToken from "./auth.js";
 
 async function baseFetch(urlRequest, data = {}, onSuccess, onFailure, methodRequest, failureMsg, hasBody = true, hasAuth = false) {
+    debugger;
     let headers =  {
         'Content-Type': 'application/json',
         'Accept': 'application/json'          

@@ -13,8 +13,6 @@ function PostAdd() {
         description: "",
         previewImg: "",
         category: 1,
-        userId: null,
-        publishedOn: "",
         startDate: null,
         endDate: null,
         animalId: null

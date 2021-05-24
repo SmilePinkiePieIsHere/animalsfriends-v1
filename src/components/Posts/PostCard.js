@@ -4,10 +4,12 @@ import { useCookies } from 'react-cookie';
 
 import { genderAnimal } from '../General/Helpers/enum.js';
 
+import "./PostCard.scss";
+
 
 function PostCard({
     title,
-    desciption
+    description
 }) {
     // const [cookies] = useCookies(['username']);
     // const history = useHistory();
@@ -23,13 +25,20 @@ function PostCard({
     //     history.push(`/animals/details/${id}`);
     // }
 
+    const addReadMore = (text) => {
+        if (text.length > 250) {
+            text = text.substr(0, 250) + "...";
+        }
+        return text;
+    }
+
     return (
         <Col xs={12}>
-            <Card>
+            <Card className="post-card">
                 <Card.Header>{title}</Card.Header>
                 <Card.Body>                    
                     <Card.Text>
-                        {desciption}
+                        {addReadMore(description)}
                     </Card.Text>
                     <Button variant="primary">Прочети още...</Button>
                 </Card.Body>

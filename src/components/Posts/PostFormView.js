@@ -60,7 +60,7 @@ function PostFormView() {
         }, "Грешка от страна на сървъра при вземане на животнo!")
             .then(res => {  
                 let animalsOptions = [{ key: "", value: "Изберете животно..." }];          
-                res.forEach((animal) => {
+                res?.forEach((animal) => {
                     animalsOptions.push({ "key": animal.id, "value": animal.name })
                 })
                 setAnimals(animalsOptions);

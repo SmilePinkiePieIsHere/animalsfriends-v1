@@ -12,7 +12,16 @@ import "./PostCard.scss";
 function PostDetails({
     match
 }) {
-    const [post, setPost] = useState({});
+    const [post, setPost] = useState({
+        title: "",
+        description: "",
+        previewImg: "",
+        category: 1,
+        startDate: null,
+        endDate: null,
+        animalId: null
+    });
+
     const [alertModal, setAlertModal] = useState({
         alertShow: false,
         alertTitle: '',
@@ -33,9 +42,7 @@ function PostDetails({
             alertDetails(true, "Грешка от страна на сървъра при вземане на публикацията!", "danger");
         }, "Грешка от страна на сървъра при вземане на публикацията!")
             .then(res => {
-                setPost(res);
-                debugger;
-        var postDate = post.publishedOn;
+                setPost(res);               
             });
         
     }, [alertModal]);
@@ -65,9 +72,9 @@ function PostDetails({
                                 <Card.Text>
                                     {post.description}
                                 </Card.Text>
-                                <Card.Text className="text-right">
+                                {/* <Card.Text className="text-right">
                                     <small className="text-muted">Автор: <cite title="Source Title">{post.user?.FirstName}</cite></small>                                    
-                                </Card.Text>
+                                </Card.Text> */}
                                 <Card.Text className="text-right">                                    
                                     <small className="text-muted">Публикувано на: <cite title="Source Title">{new Date(post.publishedOn).toLocaleDateString()}</cite></small>
                                 </Card.Text>

@@ -24,6 +24,14 @@ function PostAdd() {
         alertClass: ""
     });
 
+    const alertDetails = (shouldShow, message, classAlert) => {
+        setAlert({
+            alertShow: shouldShow,
+            alertText: message,
+            alertClass: classAlert
+        });
+    }
+
     const onSubmit = () => {
         const parrentScope = this;
 
@@ -41,24 +49,16 @@ function PostAdd() {
                 parrentScope.alertDetails(false, "", "danger");
             }, 3000);
         })
-    }
-
-    const alertDetails = (shouldShow, message, classAlert) => {
-        setAlert({
-            alertShow: shouldShow,
-            alertText: message,
-            alertClass: classAlert
-        });
-    }
+    }    
 
     let context = {
         post: post,
         postSubmit: onSubmit
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, []);
+    // }, []);
 
     return (
         <Fragment>

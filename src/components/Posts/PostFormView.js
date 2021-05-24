@@ -64,7 +64,6 @@ function PostFormView() {
                     animalsOptions.push({ "key": animal.id, "value": animal.name })
                 })
                 setAnimals(animalsOptions);
-                debugger;
             });
     }, []);
 

@@ -35,6 +35,7 @@ class Login extends Component {
                     cookies.set('access_token', data.access_token, { expires: expires_in });
                     cookies.set('refresh_token', data.refresh_token);
                     cookies.set('username', user.username);
+                    cookies.set('userid', data.user_id);
                     
                     history.goBack();
                 }

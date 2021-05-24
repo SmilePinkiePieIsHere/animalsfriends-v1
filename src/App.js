@@ -23,12 +23,14 @@ import './App.scss';
 function App() {
     const [cookies] = useCookies();
     const [authInfo, setAuthInfo] = useState({
-        isAuthenticated: false
+        isAuthenticated: false,
+        userId: ""
     });
 
     useEffect(() => {
         setAuthInfo(oldAuthInfo => ({
-            isAuthenticated: cookies.username !== undefined
+            isAuthenticated: cookies.username !== undefined,
+            userId: cookies.userid
         }));
     }, [cookies]);
     
@@ -49,6 +51,7 @@ function App() {
                         <Route path="/animals/add" component={isAuth(AnimalAdd)} />
                         <Route path="/blog" exact component={Posts} />
                         <Route path="/blog/add" component={PostAdd} />
+                        {/* <Route path="/blog/:postId/edit" component={PostEdit} /> */}
                     </Switch>
                     <Footer />
                 </ErrorBoundary>

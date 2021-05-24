@@ -35,7 +35,8 @@ class AnimalAdd extends Component {
         });
     }
 
-    onEditSubmitHandler(e) {       
+    onEditSubmitHandler(e) {      
+        debugger; 
         e.preventDefault();
 
         if (e.currentTarget.checkValidity() === false) {

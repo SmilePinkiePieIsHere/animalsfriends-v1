@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useCookies } from 'react-cookie';
@@ -8,7 +8,7 @@ import AlertNotification from "../General/AlertNotification";
 import ThemeContext from "../General/ThemeContext";
 
 import endpoints from "../../services/endpoints.js";
-import { deleteAuthData, getData } from "../../services/services.js";
+import { deleteAuthData } from "../../services/services.js";
 import { genderAnimal } from '../General/Helpers/enum.js';
 
 import "./AnimalCard.scss";
@@ -26,7 +26,8 @@ function AnimalCard({
         alertText: '',            
         alertClass: ''
     });
-    const [shouldUpdate, setShouldUpdate] = useState(false);
+    // const [shouldUpdate, setShouldUpdate] = useState(false);
+    const shouldUpdate = useContext(ThemeContext);
     const [cookies] = useCookies(['username']);
     const history = useHistory();
     let isNotLoggedIn = typeof (cookies.username) === "undefined" || cookies.username === "undefined";
@@ -59,11 +60,14 @@ function AnimalCard({
     }
 
     const deleteAnimal = (e) => {
+        debugger;
         deleteAuthData(`${endpoints.animals}/${id}`, function (data) {
+            debugger;
             setPopUp(false);
 
             if (!data.error_description) {
-                setShouldUpdate(true);
+                shouldUpdate = true;
+                //setShouldUpdate(true);
 
                 alertDetails(true, "Успешно изтрито животно.", "success");
                 setTimeout(() => {
@@ -75,6 +79,7 @@ function AnimalCard({
                 history.goBack();
             }
         }, function (error) {
+            debugger;
             alertDetails(true, "Грешка от страна на сървъра при изтриване на животното. Моля опитайте по-късно.", "danger");
             history.goBack();
         });

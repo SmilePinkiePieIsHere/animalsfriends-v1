@@ -1,4 +1,4 @@
-import { Component, Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import PostFormView from "../Posts/PostFormView";
 import AlertNotification from "../General/AlertNotification";

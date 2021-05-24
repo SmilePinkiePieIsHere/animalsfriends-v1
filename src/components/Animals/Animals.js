@@ -17,7 +17,7 @@ class Animals extends Component {
         this.state = {
             animals: [],
             currentStatus: '',
-            shouldUpdate: this.context          
+            shouldUpdate: false
         }
     }
 
@@ -25,12 +25,13 @@ class Animals extends Component {
         getData(endpoints.animals, function (error) {
             alert(error);
         }, "Грешка от страна на сървъра при вземане на животните!")
-        .then(res => {
-            this.setState({ animals: res })
-        });  
+            .then(res => {
+                this.setState({ animals: res })
+            });
     }
 
-    componentDidUpdate(prevProps) {  
+    componentDidUpdate(prevProps) {
+        debugger;
         const status = this.props.location.search; //this.props.match.params.status;
 
         if (prevProps.location.search === status) { //prevProps.match.params.status == status
@@ -41,24 +42,26 @@ class Animals extends Component {
         getData(animalsURL, function (error) {
             alert(error);
         }, "Грешка от страна на сървъра при вземане на животните!")
-        .then(res => {
-            this.setState({ animals: res, currentStatus: status })
-        });    
+            .then(res => {
+                this.setState({ animals: res, currentStatus: status })
+            });
     }
-
+    
     render() {
         return (
-            <div className="wrap-animals">
-                <Container>   
-                    <AnimalsFilters />
-                    <Row>
-                        {this.state.animals?.map(x =>
-                            <AnimalCard key={x.id} {...x} />
-                        )}
-                    </Row>
-                </Container>
-            </div>
-            );
+            <ThemeContext.Provider value={this.state.shouldUpdate}>
+                <div className="wrap-animals">
+                    <Container>
+                        <AnimalsFilters />
+                        <Row>
+                            {this.state.animals?.map(x =>
+                                <AnimalCard key={x.id} {...x} />
+                            )}
+                        </Row>
+                    </Container>
+                </div>
+            </ThemeContext.Provider>
+        );
     };
 }
 

@@ -15,6 +15,7 @@ import AnimalAdd from "./components/Animals/AnimalAdd";
 import AnimalEdit from "./components/Animals/AnimalEdit";
 import Posts from "./components/Posts/Posts";
 import PostAdd from "./components/Posts/PostAdd";
+import PostDetails from "./components/Posts/PostDetails";
 
 import isAuth from './hocs/isAuth';
 
@@ -51,7 +52,7 @@ function App() {
                         <Route path="/animals/add" component={isAuth(AnimalAdd)} />
                         <Route path="/blog" exact component={Posts} />
                         <Route path="/blog/add" component={PostAdd} />
-                        {/* <Route path="/blog/:postId/edit" component={PostEdit} /> */}
+                        <Route path="/blog/details/:postId" component={PostDetails} />
                     </Switch>
                     <Footer />
                 </ErrorBoundary>

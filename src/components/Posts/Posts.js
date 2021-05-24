@@ -21,7 +21,7 @@ function Posts() {
     }, []);
 
     return (
-        <div className="wrap-tasks">
+        <div className="wrap-posts">
             <Container>                
                 <Row>
                     {posts?.map(x =>

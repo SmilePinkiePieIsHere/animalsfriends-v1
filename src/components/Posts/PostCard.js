@@ -8,11 +8,12 @@ import "./PostCard.scss";
 
 
 function PostCard({
+    id,
     title,
     description
 }) {
     // const [cookies] = useCookies(['username']);
-    // const history = useHistory();
+    const history = useHistory();
     // let isNotLoggedIn = typeof (cookies.username) === "undefined" || cookies.username === "undefined";
 
     // const goToEdit = (e) => {
@@ -20,10 +21,10 @@ function PostCard({
     //     history.push(`/animals/${id}/edit`);
     // }
 
-    // const goToDetails = (e) => {
-    //     e.preventDefault();
-    //     history.push(`/animals/details/${id}`);
-    // }
+    const goToDetails = (e) => {
+        e.preventDefault();
+        history.push(`/blog/details/${id}`);
+    }
 
     const addReadMore = (text) => {
         if (text.length > 250) {
@@ -36,11 +37,11 @@ function PostCard({
         <Col xs={12}>
             <Card className="post-card">
                 <Card.Header>{title}</Card.Header>
-                <Card.Body>                    
+                <Card.Body>
                     <Card.Text>
                         {addReadMore(description)}
                     </Card.Text>
-                    <Button variant="primary">Прочети още...</Button>
+                    <Button onClick={goToDetails}>Прочети още...</Button>
                 </Card.Body>
             </Card>
         </Col>

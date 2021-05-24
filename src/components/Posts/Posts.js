@@ -14,8 +14,7 @@ function Posts() {
         getData(endpoints.posts, function (error) {
             alert(error);
         }, "Грешка от страна на сървъра при вземане на животните!")
-            .then(res => {
-                debugger;
+            .then(res => {                
                 setPosts(res)
             });
     }, []);

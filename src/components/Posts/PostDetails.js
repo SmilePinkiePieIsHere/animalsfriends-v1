@@ -20,19 +20,24 @@ function PostDetails({
         alertClass: ''
     });
 
-    const alertDetails = (shouldShow, message, classAlert) => { 
+    const alertDetails = (shouldShow, message, classAlert) => {
         setAlertModal({
             alertShow: shouldShow,
-            alertText: message,            
+            alertText: message,
             alertClass: classAlert
         });
     }
 
     useEffect(() => {
-        getData(`${endpoints.posts}/${match.params.postId}`, function (error) {            
+        getData(`${endpoints.posts}/${match.params.postId}`, function (error) {
             alertDetails(true, "Грешка от страна на сървъра при вземане на публикацията!", "danger");
         }, "Грешка от страна на сървъра при вземане на публикацията!")
-            .then(res => setPost(res));
+            .then(res => {
+                setPost(res);
+                debugger;
+        var postDate = post.publishedOn;
+            });
+        
     }, [alertModal]);
 
     return (
@@ -41,10 +46,30 @@ function PostDetails({
                 <Row>
                     <Col xs={12}>
                         <Card className="post-card">
-                            <Card.Header>{post.title}</Card.Header>
                             <Card.Body>
+                                <Card.Title>{post.title}</Card.Title>                                
+                                {
+                                    post.startDate
+                                        ?
+                                        <Card.Subtitle className="mb-2 text-muted">Провеждане: {new Date(post.startDate).toLocaleDateString()}}</Card.Subtitle>
+                                        :
+                                        null
+                                }
+                                {
+                                    post.previewImg
+                                        ?
+                                        <Card.Img variant="top" src={post.previewImg} />
+                                        :
+                                        null
+                                }
                                 <Card.Text>
                                     {post.description}
+                                </Card.Text>
+                                <Card.Text className="text-right">
+                                    <small className="text-muted">Автор: <cite title="Source Title">{post.user?.FirstName}</cite></small>                                    
+                                </Card.Text>
+                                <Card.Text className="text-right">                                    
+                                    <small className="text-muted">Публикувано на: <cite title="Source Title">{new Date(post.publishedOn).toLocaleDateString()}</cite></small>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

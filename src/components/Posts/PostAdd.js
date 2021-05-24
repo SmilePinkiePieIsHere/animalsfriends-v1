@@ -8,9 +8,20 @@ import endpoints from "../../services/endpoints.js";
 import { postAuthData } from "../../services/services.js";
 
 function PostAdd() {
-    const [post, setPost] = useState();
+    const [post, setPost] = useState({
+        title: "",
+        description: "",
+        previewImg: "",
+        category: 1,
+        userId: null,
+        publishedOn: "",
+        startDate: null,
+        endDate: null,
+        animalId: null
+    });
     const [alert, setAlert] = useState({
         alertShow: false,
+        alertTitle: "",
         alertText: "",
         alertClass: ""
     });
@@ -51,16 +62,17 @@ function PostAdd() {
 
     }, []);
 
-    return (<Fragment>
-        {
-            this.state.alertShow
-                ? (<AlertNotification text={this.state.alertText} heading={this.state.alertTitle} variant={this.state.alertClass} show={this.state.alertShow} />)
-                : null
-        }
-        <ThemeContext.Provider value={context}>
-            <PostFormView />
-        </ThemeContext.Provider>
-    </Fragment>)
+    return (
+        <Fragment>
+            {
+                alert.alertShow
+                    ? (<AlertNotification text={alert.alertText} heading={alert.alertTitle} variant={alert.alertClass} show={alert.alertShow} />)
+                    : null
+            }
+            <ThemeContext.Provider value={context}>
+                <PostFormView />
+            </ThemeContext.Provider>
+        </Fragment>)
 };
 
 export default PostAdd;
